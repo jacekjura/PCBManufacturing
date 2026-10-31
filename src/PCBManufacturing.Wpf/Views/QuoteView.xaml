@@ -33,7 +33,7 @@
                                             <DataGridTemplateColumn Width="36">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Path Data="{markup:Icon Check}" Width="14" Height="14" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{DynamicResource Brush.Accent}" StrokeThickness="2" Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibility}}"/>
+                                                        <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Check}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Brush.Accent}" Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibility}}"/>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>

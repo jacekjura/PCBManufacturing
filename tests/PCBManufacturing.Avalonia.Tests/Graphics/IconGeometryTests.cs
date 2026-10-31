@@ -1,4 +1,6 @@
-using Avalonia.Media;
+using FluentIcons.Avalonia;
+using FluentIcons.Common;
+using PCBManufacturing.AvaloniaApp.Markup;
 using PCBManufacturing.Core.Graphics;
 
 namespace PCBManufacturing.AvaloniaApp.Tests.Graphics;
@@ -7,13 +9,14 @@ namespace PCBManufacturing.AvaloniaApp.Tests.Graphics;
 public sealed class IconGeometryTests
 {
     [Fact]
-    public void Icons_ParseAsAvaloniaGeometry()
+    public void Icons_ResolveToFluentSymbols()
     {
         foreach (var name in IconGeometry.Names)
         {
-            var icon = IconGeometry.Get(name);
-            var geometry = Geometry.Parse(icon.Geometry);
-            Assert.True(geometry.Bounds.Width > 0 && geometry.Bounds.Height > 0, name);
+            var symbol = Assert.IsType<Symbol>(new IconExtension(name).ProvideValue(null!));
+            Assert.Equal(IconGeometry.Get(name).FluentSymbol, symbol.ToString());
+            var icon = new SymbolIcon { Symbol = symbol, FontSize = 16 };
+            Assert.Equal(symbol, icon.Symbol);
         }
     }
 }

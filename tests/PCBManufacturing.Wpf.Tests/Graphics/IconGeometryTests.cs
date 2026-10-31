@@ -1,20 +1,19 @@
-using System.Windows.Media;
 using PCBManufacturing.Core.Graphics;
+using PCBManufacturing.Wpf.Markup;
 
 namespace PCBManufacturing.Wpf.Tests.Graphics;
 
 public sealed class IconGeometryTests
 {
     [Fact]
-    public void Icons_ParseAsWpfGeometry()
+    public void Icons_ResolveToSegoeGlyphs()
     {
         StaThread.Run(() =>
         {
             foreach (var name in IconGeometry.Names)
             {
-                var icon = IconGeometry.Get(name);
-                var geometry = Geometry.Parse(icon.Geometry);
-                Assert.False(geometry.Bounds.IsEmpty, name);
+                var glyph = Assert.IsType<string>(new IconExtension(name).ProvideValue(null!));
+                Assert.Equal(IconGeometry.Get(name).SegoeGlyph, glyph);
             }
         });
     }

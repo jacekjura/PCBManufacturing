@@ -116,7 +116,7 @@
             <DockPanel>
                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}" Text="{Binding Text[Order.History]}"/>
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding HasOrders, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}">
-                    <Path Data="{markup:Icon Order}" Style="{StaticResource Icon}" Width="42" Height="42" HorizontalAlignment="Center" Stroke="{DynamicResource Brush.TextSecondary}" Margin="0,12,0,12"/>
+                    <TextBlock Text="{markup:Icon Order}" Style="{StaticResource Icon}" FontSize="42" HorizontalAlignment="Center" Foreground="{DynamicResource Brush.TextSecondary}" Margin="0,12,0,12"/>
                     <TextBlock Text="{Binding Text[Order.EmptyTitle]}" FontWeight="SemiBold" HorizontalAlignment="Center"/>
                     <TextBlock Text="{Binding Text[Order.EmptyBody]}" Style="{StaticResource CaptionText}" HorizontalAlignment="Center" Margin="0,6,0,0"/>
                 </StackPanel>

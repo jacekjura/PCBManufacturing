@@ -34,17 +34,15 @@
         <Setter Property="Padding" Value="20"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
     </Style>
-    <Style x:Key="Icon" TargetType="Path">
-        <Setter Property="Stroke" Value="{DynamicResource Brush.TextPrimary}"/>
-        <Setter Property="StrokeThickness" Value="1.6"/>
-        <Setter Property="StrokeStartLineCap" Value="Round"/>
-        <Setter Property="StrokeEndLineCap" Value="Round"/>
-        <Setter Property="StrokeLineJoin" Value="Round"/>
-        <Setter Property="Fill" Value="Transparent"/>
-        <Setter Property="Width" Value="16"/>
-        <Setter Property="Height" Value="16"/>
-        <Setter Property="Stretch" Value="Uniform"/>
+    <!-- Fallback for Windows 10 + 11 compatibility -->
+    <Style x:Key="Icon" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="{DynamicResource Brush.TextPrimary}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Normal"/>
     </Style>
 
     <Style x:Key="PrimaryButton" TargetType="Button">

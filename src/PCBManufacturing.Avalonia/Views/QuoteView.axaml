@@ -1,6 +1,8 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:PCBManufacturing.ViewModels"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:local="using:PCBManufacturing.AvaloniaApp.Markup"
              x:Class="PCBManufacturing.AvaloniaApp.Views.QuoteView"
              x:DataType="vm:QuoteViewModel">
     <Grid ColumnDefinitions="1.15*,16,*">
@@ -29,7 +31,7 @@
                                                              GroupName="{Binding $parent[ItemsControl].((vm:ParameterGroupViewModel)DataContext).GroupKey}"
                                                              IsChecked="{Binding IsSelected}">
                                                     <Grid ColumnDefinitions="28,*,*,110,120">
-                                                        <TextBlock Text="✓" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding IsSelected}" Foreground="{DynamicResource SystemControlForegroundAccentBrush}" FontWeight="Bold"/>
+                                                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Check}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding IsSelected}" Foreground="{DynamicResource SystemControlForegroundAccentBrush}"/>
                                                         <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"/>
                                                         <TextBlock Grid.Column="2" Text="{Binding Value}" VerticalAlignment="Center"/>
                                                         <TextBlock Grid.Column="3" Text="{Binding TimeImpact}" VerticalAlignment="Center" HorizontalAlignment="Right"/>

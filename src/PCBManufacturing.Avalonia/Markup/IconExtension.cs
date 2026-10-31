@@ -1,5 +1,5 @@
 using Avalonia.Markup.Xaml;
-using Avalonia.Media;
+using FluentIcons.Common;
 using PCBManufacturing.Core.Graphics;
 
 namespace PCBManufacturing.AvaloniaApp.Markup;
@@ -15,5 +15,5 @@ public sealed class IconExtension : MarkupExtension
     public string Name { get; set; } = "Logo";
 
     public override object ProvideValue(IServiceProvider serviceProvider) =>
-        Geometry.Parse(IconGeometry.Get(Name).Geometry);
+        Enum.Parse<Symbol>(IconGeometry.Get(Name).FluentSymbol);
 }

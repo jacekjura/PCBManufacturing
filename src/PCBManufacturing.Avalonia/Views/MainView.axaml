@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:PCBManufacturing.ViewModels"
+             xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:local="using:PCBManufacturing.AvaloniaApp.Markup"
              x:Class="PCBManufacturing.AvaloniaApp.Views.MainView"
              x:DataType="vm:MainViewModel"
@@ -10,7 +11,7 @@
         <Grid ColumnDefinitions="*,Auto">
             <StackPanel Orientation="Horizontal" Spacing="12">
                 <Border Width="36" Height="36" CornerRadius="8" Background="{DynamicResource SystemControlHighlightListLowBrush}">
-                    <Path Classes="icon" Data="{local:Icon Logo}" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{DynamicResource SystemControlForegroundAccentBrush}"/>
+                    <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Logo}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource SystemControlForegroundAccentBrush}"/>
                 </Border>
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Classes="h1" Text="{Binding Localization[App.Title]}"/>
@@ -29,14 +30,14 @@
                 </Border>
                 <Button Command="{Binding ToggleThemeCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="6">
-                        <Path Classes="icon" Data="{local:Icon Sun}" IsVisible="{Binding !IsDark}" Width="14" Height="14"/>
-                        <Path Classes="icon" Data="{local:Icon Moon}" IsVisible="{Binding IsDark}" Width="14" Height="14" Fill="{DynamicResource SystemControlForegroundBaseHighBrush}" StrokeThickness="0"/>
+                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Sun}" IsVisible="{Binding !IsDark}" FontSize="14"/>
+                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Moon}" IconVariant="Filled" IsVisible="{Binding IsDark}" FontSize="14"/>
                         <TextBlock Text="{Binding Localization[Action.Theme]}"/>
                     </StackPanel>
                 </Button>
                 <Button Command="{Binding SaveCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="6">
-                        <Path Classes="icon" Data="{local:Icon Save}" Width="14" Height="14"/>
+                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Save}" FontSize="14"/>
                         <TextBlock Text="{Binding Localization[Action.Save]}"/>
                     </StackPanel>
                 </Button>
@@ -48,7 +49,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <Path Classes="icon" Data="{local:Icon Preferences}" Width="15" Height="15"/>
+                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Preferences}" FontSize="15"/>
                         <TextBlock Text="{Binding #Root.((vm:MainViewModel)DataContext).Localization[Tab.Preferences]}"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -57,7 +58,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <Path Classes="icon" Data="{local:Icon Quote}" Width="15" Height="15"/>
+                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Quote}" FontSize="15"/>
                         <TextBlock Text="{Binding #Root.((vm:MainViewModel)DataContext).Localization[Tab.Quote]}"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -66,7 +67,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <Path Classes="icon" Data="{local:Icon Order}" Width="15" Height="15"/>
+                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Order}" FontSize="15"/>
                         <TextBlock Text="{Binding #Root.((vm:MainViewModel)DataContext).Localization[Tab.Order]}"/>
                     </StackPanel>
                 </TabItem.Header>

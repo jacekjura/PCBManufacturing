@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
                 <Border Width="36" Height="36" CornerRadius="8" Background="{DynamicResource Brush.AccentSubtle}" VerticalAlignment="Center">
-                    <Path Style="{StaticResource Icon}" Data="{markup:Icon Logo}" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{DynamicResource Brush.Accent}"/>
+                    <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Logo}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Brush.Accent}"/>
                 </Border>
                 <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource TitleText}" Text="{Binding Localization[App.Title]}"/>
@@ -60,26 +60,24 @@
                 </Border>
                 <Button Margin="0,0,8,0" MinWidth="96" Command="{Binding ToggleThemeCommand}" AutomationProperties.Name="{Binding Localization[Action.Theme]}">
                     <StackPanel Orientation="Horizontal">
-                        <Path Width="14" Height="14" Margin="0,0,6,0">
-                            <Path.Style>
-                                <Style TargetType="Path" BasedOn="{StaticResource Icon}">
-                                    <Setter Property="Data" Value="{markup:Icon Sun}"/>
+                        <TextBlock FontSize="14" Margin="0,0,6,0">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource Icon}">
+                                    <Setter Property="Text" Value="{markup:Icon Sun}"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Theme}" Value="Dark">
-                                            <Setter Property="Data" Value="{markup:Icon Moon}"/>
-                                            <Setter Property="Fill" Value="{DynamicResource Brush.TextPrimary}"/>
-                                            <Setter Property="StrokeThickness" Value="0"/>
+                                            <Setter Property="Text" Value="{markup:Icon Moon}"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
-                            </Path.Style>
-                        </Path>
+                            </TextBlock.Style>
+                        </TextBlock>
                         <TextBlock Text="{Binding Localization[Action.Theme]}"/>
                     </StackPanel>
                 </Button>
                 <Button Margin="0,0,8,0" Command="{Binding SaveCommand}" AutomationProperties.Name="{Binding Localization[Action.Save]}">
                     <StackPanel Orientation="Horizontal">
-                        <Path Style="{StaticResource Icon}" Data="{markup:Icon Save}" Width="14" Height="14" Margin="0,0,6,0"/>
+                        <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Save}" FontSize="14" Margin="0,0,6,0"/>
                         <TextBlock Text="{Binding Localization[Action.Save]}"/>
                     </StackPanel>
                 </Button>
@@ -93,7 +91,7 @@
             <TabItem AutomationProperties.Name="{Binding Localization[Tab.Preferences]}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Path Style="{StaticResource Icon}" Data="{markup:Icon Preferences}" Width="15" Height="15" Margin="0,0,8,0"/>
+                        <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Preferences}" FontSize="15" Margin="0,0,8,0"/>
                         <TextBlock Text="{Binding DataContext.Localization[Tab.Preferences], RelativeSource={RelativeSource AncestorType=Window}}"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -106,7 +104,7 @@
             <TabItem AutomationProperties.Name="{Binding Localization[Tab.Quote]}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Path Style="{StaticResource Icon}" Data="{markup:Icon Quote}" Width="15" Height="15" Margin="0,0,8,0"/>
+                        <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Quote}" FontSize="15" Margin="0,0,8,0"/>
                         <TextBlock Text="{Binding DataContext.Localization[Tab.Quote], RelativeSource={RelativeSource AncestorType=Window}}"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -115,7 +113,7 @@
             <TabItem AutomationProperties.Name="{Binding Localization[Tab.Order]}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Path Style="{StaticResource Icon}" Data="{markup:Icon Order}" Width="15" Height="15" Margin="0,0,8,0"/>
+                        <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Order}" FontSize="15" Margin="0,0,8,0"/>
                         <TextBlock Text="{Binding DataContext.Localization[Tab.Order], RelativeSource={RelativeSource AncestorType=Window}}"/>
                     </StackPanel>
                 </TabItem.Header>

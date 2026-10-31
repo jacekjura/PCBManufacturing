@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:PCBManufacturing.ViewModels"
+             xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:local="using:PCBManufacturing.AvaloniaApp.Markup"
              x:Class="PCBManufacturing.AvaloniaApp.Views.OrderView"
              x:DataType="vm:OrderViewModel">
@@ -32,7 +33,7 @@
             <DockPanel>
                 <TextBlock DockPanel.Dock="Top" Classes="h2" Text="{Binding Text[Order.History]}"/>
                 <StackPanel IsVisible="{Binding !HasOrders}" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="6">
-                    <Path Classes="icon" Data="{local:Icon Order}" Width="42" Height="42" HorizontalAlignment="Center"/>
+                    <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Order}" FontSize="42" HorizontalAlignment="Center"/>
                     <TextBlock Text="{Binding Text[Order.EmptyTitle]}" FontWeight="SemiBold" HorizontalAlignment="Center"/>
                     <TextBlock Classes="caption" Text="{Binding Text[Order.EmptyBody]}" HorizontalAlignment="Center"/>
                 </StackPanel>
