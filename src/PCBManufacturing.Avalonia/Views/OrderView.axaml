@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PCBManufacturing.ViewModels"
+             xmlns:local="using:PCBManufacturing.AvaloniaApp.Markup"
+             x:Class="PCBManufacturing.AvaloniaApp.Views.OrderView"
+             x:DataType="vm:OrderViewModel">
+    <Grid ColumnDefinitions="*,16,*">
+        <Border Classes="card" VerticalAlignment="Top">
+            <StackPanel Spacing="8">
+                <TextBlock Classes="h2" Text="{Binding Text[Order.Heading]}" Margin="0"/>
+                <TextBlock Classes="caption" Text="{Binding Text[Order.Intro]}" Margin="0,0,0,8"/>
+                <ItemsControl ItemsSource="{Binding ValidationMessages}" IsVisible="{Binding HasValidationErrors}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Grid ColumnDefinitions="140,*"><TextBlock Classes="caption" Text="{Binding Text[Summary.Project]}"/><TextBlock Grid.Column="1" Text="{Binding Preferences.SummaryProject}" FontWeight="SemiBold"/></Grid>
+                <Grid ColumnDefinitions="140,*"><TextBlock Classes="caption" Text="{Binding Text[Summary.Postcode]}"/><TextBlock Grid.Column="1" Text="{Binding Preferences.SummaryPostcode}" FontWeight="SemiBold"/></Grid>
+                <Grid ColumnDefinitions="140,*"><TextBlock Classes="caption" Text="{Binding Text[Summary.Material]}"/><TextBlock Grid.Column="1" Text="{Binding Preferences.SummaryMaterial}" FontWeight="SemiBold"/></Grid>
+                <Grid ColumnDefinitions="140,*"><TextBlock Classes="caption" Text="{Binding Text[Quote.Legend.Size]}"/><TextBlock Grid.Column="1" Text="{Binding Quote.LegendSize}" FontWeight="SemiBold"/></Grid>
+                <Grid ColumnDefinitions="140,*"><TextBlock Classes="caption" Text="{Binding Text[Quote.Legend.Layers]}"/><TextBlock Grid.Column="1" Text="{Binding Quote.LegendLayers}" FontWeight="SemiBold"/></Grid>
+                <Grid ColumnDefinitions="140,*"><TextBlock Classes="caption" Text="{Binding Text[Quote.Legend.Finish]}"/><TextBlock Grid.Column="1" Text="{Binding Quote.LegendFinish}" FontWeight="SemiBold"/></Grid>
+                <Grid ColumnDefinitions="140,*"><TextBlock Classes="caption" Text="{Binding Text[Quote.Total]}"/><TextBlock Grid.Column="1" Text="{Binding Quote.TotalText}" FontWeight="SemiBold" FontSize="18"/></Grid>
+                <Grid ColumnDefinitions="140,*" Margin="0,0,0,8"><TextBlock Classes="caption" Text="{Binding Text[Quote.Lead]}"/><TextBlock Grid.Column="1" Text="{Binding Quote.LeadText}" FontWeight="SemiBold"/></Grid>
+                <Button Classes="primary" Command="{Binding PlaceOrderCommand}" HorizontalAlignment="Left" MinWidth="180" Content="{Binding PlaceOrderText}"/>
+                <TextBlock Text="{Binding StatusMessage}" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="{DynamicResource Brush.Success}"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Column="2" Classes="card">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" Classes="h2" Text="{Binding Text[Order.History]}"/>
+                <StackPanel IsVisible="{Binding !HasOrders}" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="6">
+                    <Path Classes="icon" Data="{local:Icon Order}" Width="42" Height="42" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Text[Order.EmptyTitle]}" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                    <TextBlock Classes="caption" Text="{Binding Text[Order.EmptyBody]}" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <ScrollViewer IsVisible="{Binding HasOrders}">
+                    <ItemsControl ItemsSource="{Binding History}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" BorderThickness="0,0,0,1" Padding="0,10">
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <Ellipse Width="16" Height="16" Margin="0,2,12,0" VerticalAlignment="Top" Fill="{Binding MaskHex, Converter={StaticResource HexToBrush}}"/>
+                                        <StackPanel Grid.Column="1" Spacing="2">
+                                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                            <TextBlock Classes="caption" Text="{Binding When}"/>
+                                            <TextBlock Text="{Binding Detail}" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

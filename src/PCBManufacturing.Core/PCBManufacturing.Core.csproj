@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>PCBManufacturing.Core</RootNamespace>
+    <Description>Shared models, pricing, validation, and services for the PCB Manufacturing apps.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Data\catalog.json" Link="catalog.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Localization\en.json" Link="Localization\en.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Localization\ru.json" Link="Localization\ru.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

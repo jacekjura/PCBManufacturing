@@ -1,0 +1,123 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PCBManufacturing.ViewModels"
+             x:Class="PCBManufacturing.AvaloniaApp.Views.PreferencesView"
+             x:DataType="vm:PreferencesViewModel">
+    <Grid RowDefinitions="Auto,*,Auto">
+            <StackPanel Margin="0,0,0,16">
+                <TextBlock Classes="h2" Text="{Binding Text[Preferences.Heading]}" Margin="0"/>
+                <TextBlock Classes="caption" Text="{Binding Text[Preferences.Intro]}"/>
+            </StackPanel>
+            <ScrollViewer Grid.Row="1">
+            <Grid ColumnDefinitions="*,16,320">
+                <Border Classes="card">
+                    <StackPanel Spacing="0">
+                        <TextBlock Classes="label" Text="{Binding Text[Field.Project]}"/>
+                        <TextBox Text="{Binding ProjectName}" Classes.invalid="{Binding HasProjectError}"/>
+                        <TextBlock Text="{Binding ProjectMessage}" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" FontSize="12" IsVisible="{Binding HasProjectError}" Margin="2,4,0,12"/>
+
+                        <TextBlock Classes="label" Text="{Binding Text[Field.Postcode]}"/>
+                        <TextBox Text="{Binding Postcode}" Classes.invalid="{Binding HasPostcodeError}" Classes.valid="{Binding IsPostcodeValid}"/>
+                        <TextBlock Classes="caption" Text="{Binding Text[Field.Postcode.Hint]}" Margin="2,4,0,0"/>
+                        <TextBlock Text="{Binding PostcodeMessage}" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" FontSize="12" IsVisible="{Binding HasPostcodeError}" TextWrapping="Wrap" Margin="2,4,0,0"/>
+                        <TextBlock Text="{Binding SummaryPostcodeState}" Foreground="{DynamicResource Brush.Success}" FontSize="12" IsVisible="{Binding IsPostcodeValid}" Margin="2,4,0,12"/>
+
+                        <TextBlock Classes="label" Text="{Binding Text[Field.Material]}"/>
+                        <ComboBox ItemsSource="{Binding Materials}" SelectedItem="{Binding SelectedMaterial}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Title}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock Classes="caption" Text="{Binding SelectedMaterial.Impact}" Margin="2,6,0,12"/>
+
+                        <TextBlock Classes="label" Text="{Binding Text[Field.Mask]}"/>
+                        <ComboBox ItemsSource="{Binding SolderMaskColors}" SelectedItem="{Binding SelectedSolderMask}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Ellipse Width="12" Height="12" Fill="{Binding SwatchHex, Converter={StaticResource HexToBrush}}" IsVisible="{Binding HasSwatch}"/>
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" Spacing="8" Margin="2,6,0,12">
+                            <Ellipse Width="14" Height="14" Fill="{Binding MaskHex, Converter={StaticResource HexToBrush}}"/>
+                            <TextBlock Text="{Binding SummaryMask}"/>
+                        </StackPanel>
+
+                        <TextBlock Classes="label" Text="{Binding Text[Field.Thickness]}"/>
+                        <ComboBox ItemsSource="{Binding Thicknesses}" SelectedItem="{Binding SelectedThickness}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Title}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock Classes="caption" Text="{Binding SelectedThickness.Impact}" Margin="2,6,0,12"/>
+
+                        <TextBlock Classes="label" Text="{Binding Text[Field.Quantity]}"/>
+                        <ComboBox ItemsSource="{Binding Quantities}" SelectedItem="{Binding SelectedQuantity}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Title}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBlock Classes="label" Text="{Binding Text[Field.Notes]}" Margin="2,16,0,6"/>
+                        <TextBox Text="{Binding Notes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="72"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Classes="card" VerticalAlignment="Top">
+                    <StackPanel Spacing="10">
+                        <TextBlock Classes="h2" Text="{Binding Text[Summary.Title]}"/>
+                        <Grid ColumnDefinitions="120,*">
+                            <TextBlock Classes="caption" Text="{Binding Text[Summary.Project]}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SummaryProject}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="120,*">
+                            <TextBlock Classes="caption" Text="{Binding Text[Summary.Postcode]}"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding SummaryPostcode}" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding SummaryPostcodeState}" FontSize="12"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid ColumnDefinitions="120,*">
+                            <TextBlock Classes="caption" Text="{Binding Text[Summary.Material]}"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding SummaryMaterial}" FontWeight="SemiBold"/>
+                                <TextBlock Classes="caption" Text="{Binding SummaryModifier}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid ColumnDefinitions="120,*">
+                            <TextBlock Classes="caption" Text="{Binding Text[Summary.Lead]}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SummaryLead}" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="120,*">
+                            <TextBlock Classes="caption" Text="{Binding Text[Summary.Mask]}"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Ellipse Width="14" Height="14" Fill="{Binding MaskHex, Converter={StaticResource HexToBrush}}"/>
+                                <TextBlock Text="{Binding SummaryMask}" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid ColumnDefinitions="120,*">
+                            <TextBlock Classes="caption" Text="{Binding Text[Summary.Thickness]}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SummaryThickness}" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="120,*">
+                            <TextBlock Classes="caption" Text="{Binding Text[Summary.Quantity]}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SummaryQuantity}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            </ScrollViewer>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,8">
+                <Button Content="{Binding Text[Action.Discard]}" Command="{Binding RequestDiscardCommand}"/>
+                <Button Classes="primary" Content="{Binding Text[Action.Continue]}" Command="{Binding RequestContinueCommand}"/>
+            </StackPanel>
+        </Grid>
+</UserControl>

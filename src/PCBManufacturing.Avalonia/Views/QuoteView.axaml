@@ -1,0 +1,163 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PCBManufacturing.ViewModels"
+             x:Class="PCBManufacturing.AvaloniaApp.Views.QuoteView"
+             x:DataType="vm:QuoteViewModel">
+    <Grid ColumnDefinitions="1.15*,16,*">
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Margin="0,0,0,12">
+                <TextBlock Classes="h2" Text="{Binding Text[Quote.Heading]}" Margin="0"/>
+                <TextBlock Classes="caption" Text="{Binding Text[Quote.Intro]}"/>
+            </StackPanel>
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Groups}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ParameterGroupViewModel">
+                            <Border Classes="card" Margin="0,0,0,12" Padding="12">
+                                <StackPanel>
+                                    <TextBlock Classes="h2" Text="{Binding Title}" Margin="4,0,4,8"/>
+                                    <Grid ColumnDefinitions="36,*,*,110,120" Margin="8,0,8,4">
+                                        <TextBlock Grid.Column="1" Classes="caption" Text="{Binding ColumnParameter}"/>
+                                        <TextBlock Grid.Column="2" Classes="caption" Text="{Binding ColumnValue}"/>
+                                        <TextBlock Grid.Column="3" Classes="caption" Text="{Binding ColumnTime}"/>
+                                        <TextBlock Grid.Column="4" Classes="caption" Text="{Binding ColumnCost}"/>
+                                    </Grid>
+                                    <ItemsControl ItemsSource="{Binding Rows}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:ParameterRowViewModel">
+                                                <RadioButton Classes="row"
+                                                             GroupName="{Binding $parent[ItemsControl].((vm:ParameterGroupViewModel)DataContext).GroupKey}"
+                                                             IsChecked="{Binding IsSelected}">
+                                                    <Grid ColumnDefinitions="28,*,*,110,120">
+                                                        <TextBlock Text="✓" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding IsSelected}" Foreground="{DynamicResource SystemControlForegroundAccentBrush}" FontWeight="Bold"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                                        <TextBlock Grid.Column="2" Text="{Binding Value}" VerticalAlignment="Center"/>
+                                                        <TextBlock Grid.Column="3" Text="{Binding TimeImpact}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                                        <TextBlock Grid.Column="4" Text="{Binding CostImpact}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                                    </Grid>
+                                                </RadioButton>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+
+        <ScrollViewer Grid.Column="2">
+            <StackPanel Spacing="12">
+                <Border x:Name="PreviewHost" Classes="preview">
+                    <StackPanel>
+                        <TextBlock Classes="h2" Text="{Binding Text[Quote.Preview]}"/>
+                        <Viewbox Stretch="Uniform" MaxHeight="280">
+                            <ItemsControl Width="{Binding BoardCanvasWidth}" Height="{Binding BoardCanvasHeight}" ItemsSource="{Binding BoardShapes}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.Styles>
+                                    <Style Selector="ContentPresenter">
+                                        <Setter Property="Canvas.Left" Value="0"/>
+                                        <Setter Property="Canvas.Top" Value="0"/>
+                                    </Style>
+                                </ItemsControl.Styles>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Path Data="{Binding Geometry, Converter={StaticResource GeometryConverter}}"
+                                              Fill="{Binding FillHex, Converter={StaticResource HexToBrush}}"
+                                              Stroke="{Binding StrokeHex, Converter={StaticResource HexToBrush}}"
+                                              StrokeThickness="{Binding StrokeThickness}"
+                                              Opacity="{Binding Opacity}"
+                                              Stretch="None"
+                                              StrokeJoin="Round"
+                                              IsHitTestVisible="False"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Viewbox>
+                        <WrapPanel Margin="0,12,0,0">
+                            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="10" Height="10" Fill="{Binding PreviewMaskHex, Converter={StaticResource HexToBrush}}"/>
+                                    <TextBlock Text="{Binding LegendMask}"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                                <TextBlock Text="{Binding LegendSize}"/>
+                            </Border>
+                            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                                <TextBlock Text="{Binding LegendLayers}"/>
+                            </Border>
+                            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                                <TextBlock Text="{Binding LegendFinish}"/>
+                            </Border>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+                <Border Classes="card">
+                    <StackPanel>
+                        <TextBlock Classes="h2" Text="{Binding Text[Quote.Layers]}"/>
+                        <Viewbox Stretch="Uniform" MaxHeight="150">
+                            <ItemsControl Width="{Binding StackCanvasWidth}" Height="{Binding StackCanvasHeight}" ItemsSource="{Binding LayerShapes}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.Styles>
+                                    <Style Selector="ContentPresenter">
+                                        <Setter Property="Canvas.Left" Value="0"/>
+                                        <Setter Property="Canvas.Top" Value="0"/>
+                                    </Style>
+                                </ItemsControl.Styles>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Path Data="{Binding Geometry, Converter={StaticResource GeometryConverter}}"
+                                              Fill="{Binding FillHex, Converter={StaticResource HexToBrush}}"
+                                              Stroke="{Binding StrokeHex, Converter={StaticResource HexToBrush}}"
+                                              StrokeThickness="{Binding StrokeThickness}"
+                                              Stretch="None"
+                                              IsHitTestVisible="False"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border Classes="card">
+                    <StackPanel Spacing="6">
+                        <TextBlock Classes="h2" Text="{Binding Text[Quote.Breakdown]}"/>
+                        <ItemsControl ItemsSource="{Binding Lines}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:QuoteLineViewModel">
+                                    <Grid ColumnDefinitions="*,90,90" Margin="0,0,0,6">
+                                        <TextBlock Text="{Binding Label}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding DaysText}" HorizontalAlignment="Right" Opacity="0.7"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding AmountText}" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Separator Margin="0,6"/>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding Text[Quote.Unit]}" Opacity="0.7"/>
+                            <TextBlock Grid.Column="1" Text="{Binding UnitText}" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding Text[Quote.Lead]}" Opacity="0.7"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LeadText}" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding Text[Quote.Total]}" FontWeight="SemiBold" FontSize="16"/>
+                            <TextBlock Grid.Column="1" Text="{Binding TotalText}" FontWeight="SemiBold" FontSize="16"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

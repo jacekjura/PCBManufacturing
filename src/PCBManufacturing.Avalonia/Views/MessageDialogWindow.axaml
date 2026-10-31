@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PCBManufacturing.ViewModels"
+        x:Class="PCBManufacturing.AvaloniaApp.Views.MessageDialogWindow"
+        x:DataType="vm:DialogViewModel"
+        Title="{Binding Content.Title}"
+        Width="480"
+        SizeToContent="Height"
+        MinHeight="180"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+    <Grid Margin="24" RowDefinitions="Auto,Auto,Auto,Auto">
+        <TextBlock Classes="h1" Text="{Binding Content.Title}" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="1" Classes="caption" Text="{Binding Content.Message}" Margin="0,8,0,16"/>
+        <ScrollViewer Grid.Row="2" MaxHeight="280">
+            <ItemsControl ItemsSource="{Binding Content.Rows}" Margin="0,0,0,16">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="150,*" Margin="0,0,0,8">
+                            <TextBlock Classes="caption" Text="{Binding Label}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Value}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button Content="{Binding Content.CancelText}" Command="{Binding DismissCommand}" MinWidth="96" IsVisible="{Binding Content.ShowCancel}"/>
+            <Button Classes="primary" Content="{Binding Content.ConfirmText}" Command="{Binding ConfirmCommand}" MinWidth="120" IsDefault="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,174 @@
+<UserControl x:Class="PCBManufacturing.Wpf.Views.QuoteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:behaviors="clr-namespace:PCBManufacturing.Wpf.Behaviors"
+             xmlns:markup="clr-namespace:PCBManufacturing.Wpf.Markup"
+             behaviors:FadeIn.IsEnabled="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.15*" MinWidth="420"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="*" MinWidth="360"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Margin="0,0,0,12">
+                <TextBlock Style="{StaticResource SectionText}" Text="{Binding Text[Quote.Heading]}" Margin="0"/>
+                <TextBlock Style="{StaticResource CaptionText}" Text="{Binding Text[Quote.Intro]}"/>
+            </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Groups}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Card}" Margin="0,0,0,12" Padding="12,12,12,8">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" Style="{StaticResource SectionText}" Margin="8,4,8,8"/>
+                                    <DataGrid ItemsSource="{Binding Rows}"
+                                              SelectedItem="{Binding SelectedRow, Mode=TwoWay}"
+                                              behaviors:DataGridColumns.ParameterHeader="{Binding ColumnParameter}"
+                                              behaviors:DataGridColumns.ValueHeader="{Binding ColumnValue}"
+                                              behaviors:DataGridColumns.TimeHeader="{Binding ColumnTime}"
+                                              behaviors:DataGridColumns.CostHeader="{Binding ColumnCost}">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Width="36">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Path Data="{markup:Icon Check}" Width="14" Height="14" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{DynamicResource Brush.Accent}" StrokeThickness="2" Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibility}}"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Binding="{Binding Name}" Width="*"/>
+                                            <DataGridTextColumn Binding="{Binding Value}" Width="*"/>
+                                            <DataGridTextColumn Binding="{Binding TimeImpact}" Width="110"/>
+                                            <DataGridTextColumn Binding="{Binding CostImpact}" Width="120"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+
+        <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border Style="{StaticResource Card}" Background="{DynamicResource Brush.Preview}" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SectionText}" Text="{Binding Text[Quote.Preview]}"/>
+                        <Viewbox Stretch="Uniform" MaxHeight="280">
+                            <ItemsControl Width="{Binding BoardCanvasWidth}" Height="{Binding BoardCanvasHeight}" ItemsSource="{Binding BoardShapes}" Background="Transparent">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="ContentPresenter">
+                                        <Setter Property="Canvas.Left" Value="0"/>
+                                        <Setter Property="Canvas.Top" Value="0"/>
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Path Data="{Binding Geometry, Converter={StaticResource GeometryConverter}}"
+                                              Fill="{Binding FillHex, Converter={StaticResource HexToBrush}}"
+                                              Stroke="{Binding StrokeHex, Converter={StaticResource HexToBrush}}"
+                                              StrokeThickness="{Binding StrokeThickness}"
+                                              Opacity="{Binding Opacity}"
+                                              Stretch="None"
+                                              StrokeLineJoin="Round"
+                                              IsHitTestVisible="False"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Viewbox>
+                        <WrapPanel Margin="0,12,0,0">
+                            <Border Background="{DynamicResource Brush.Card}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="10" Height="10" Fill="{Binding PreviewMaskHex, Converter={StaticResource HexToBrush}}" Margin="0,0,6,0"/>
+                                    <TextBlock Text="{Binding LegendMask}"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="{DynamicResource Brush.Card}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                                <TextBlock Text="{Binding LegendSize}"/>
+                            </Border>
+                            <Border Background="{DynamicResource Brush.Card}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                                <TextBlock Text="{Binding LegendLayers}"/>
+                            </Border>
+                            <Border Background="{DynamicResource Brush.Card}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                                <TextBlock Text="{Binding LegendFinish}"/>
+                            </Border>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SectionText}" Text="{Binding Text[Quote.Layers]}"/>
+                        <Viewbox Stretch="Uniform" MaxHeight="160">
+                            <ItemsControl Width="{Binding StackCanvasWidth}" Height="{Binding StackCanvasHeight}" ItemsSource="{Binding LayerShapes}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="ContentPresenter">
+                                        <Setter Property="Canvas.Left" Value="0"/>
+                                        <Setter Property="Canvas.Top" Value="0"/>
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Path Data="{Binding Geometry, Converter={StaticResource GeometryConverter}}"
+                                              Fill="{Binding FillHex, Converter={StaticResource HexToBrush}}"
+                                              Stroke="{Binding StrokeHex, Converter={StaticResource HexToBrush}}"
+                                              StrokeThickness="{Binding StrokeThickness}"
+                                              Stretch="None"
+                                              IsHitTestVisible="False"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SectionText}" Text="{Binding Text[Quote.Breakdown]}"/>
+                        <ItemsControl ItemsSource="{Binding Lines}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="90"/>
+                                            <ColumnDefinition Width="90"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Label}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding DaysText}" Foreground="{DynamicResource Brush.TextSecondary}" HorizontalAlignment="Right"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding AmountText}" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Separator Margin="0,4,0,12" Background="{DynamicResource Brush.Stroke}"/>
+                        <Grid Margin="0,0,0,6">
+                            <TextBlock Text="{Binding Text[Quote.Unit]}" Foreground="{DynamicResource Brush.TextSecondary}"/>
+                            <TextBlock Text="{Binding UnitText}" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,6">
+                            <TextBlock Text="{Binding Text[Quote.Lead]}" Foreground="{DynamicResource Brush.TextSecondary}"/>
+                            <TextBlock Text="{Binding LeadText}" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Text="{Binding Text[Quote.Total]}" FontWeight="SemiBold" FontSize="16"/>
+                            <TextBlock Text="{Binding TotalText}" HorizontalAlignment="Right" FontWeight="SemiBold" FontSize="16"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

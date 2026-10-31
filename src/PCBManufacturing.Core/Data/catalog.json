@@ -1,0 +1,193 @@
+{
+  "basePricePerBoard": 25.0,
+  "currency": "USD",
+  "materials": [
+    {
+      "id": "fr4",
+      "nameKey": "Material.Fr4",
+      "descriptionKey": "Material.Fr4.Description",
+      "priceModifier": 1.0,
+      "productionDays": 5,
+      "substrateHex": "#C4A574"
+    },
+    {
+      "id": "aluminum",
+      "nameKey": "Material.Aluminum",
+      "descriptionKey": "Material.Aluminum.Description",
+      "priceModifier": 1.45,
+      "productionDays": 8,
+      "substrateHex": "#C5CCD4"
+    },
+    {
+      "id": "rogers",
+      "nameKey": "Material.Rogers",
+      "descriptionKey": "Material.Rogers.Description",
+      "priceModifier": 2.2,
+      "productionDays": 12,
+      "substrateHex": "#D7C4A3"
+    }
+  ],
+  "solderMaskColors": [
+    { "id": "green", "nameKey": "Color.Green", "hex": "#1B7A3A" },
+    { "id": "blue", "nameKey": "Color.Blue", "hex": "#1A4F8B" },
+    { "id": "red", "nameKey": "Color.Red", "hex": "#B42318" },
+    { "id": "black", "nameKey": "Color.Black", "hex": "#1C1C1C" },
+    { "id": "white", "nameKey": "Color.White", "hex": "#F4F1EA" },
+    { "id": "yellow", "nameKey": "Color.Yellow", "hex": "#E6B325" }
+  ],
+  "thicknesses": [
+    { "id": "t08", "nameKey": "Thickness.08", "millimeters": 0.8, "priceModifier": 1.1, "productionDaysExtra": 1 },
+    { "id": "t16", "nameKey": "Thickness.16", "millimeters": 1.6, "priceModifier": 1.0, "productionDaysExtra": 0 },
+    { "id": "t24", "nameKey": "Thickness.24", "millimeters": 2.4, "priceModifier": 1.22, "productionDaysExtra": 2 }
+  ],
+  "parameters": [
+    {
+      "id": "size-50",
+      "groupKey": "Group.Dimensions",
+      "kind": "Size",
+      "nameKey": "Param.Size50",
+      "valueKey": "Param.Size50.Value",
+      "priceModifier": 0.7,
+      "widthMm": 50,
+      "heightMm": 50,
+      "isDefault": false
+    },
+    {
+      "id": "size-100",
+      "groupKey": "Group.Dimensions",
+      "kind": "Size",
+      "nameKey": "Param.Size100",
+      "valueKey": "Param.Size100.Value",
+      "priceModifier": 1.0,
+      "widthMm": 100,
+      "heightMm": 80,
+      "isDefault": true
+    },
+    {
+      "id": "size-160",
+      "groupKey": "Group.Dimensions",
+      "kind": "Size",
+      "nameKey": "Param.Size160",
+      "valueKey": "Param.Size160.Value",
+      "priceModifier": 1.55,
+      "widthMm": 160,
+      "heightMm": 100,
+      "isDefault": false
+    },
+    {
+      "id": "qty-5",
+      "groupKey": "Group.Quantity",
+      "kind": "Quantity",
+      "nameKey": "Param.Qty5",
+      "valueKey": "Param.Qty5.Value",
+      "priceModifier": 1.15,
+      "quantity": 5,
+      "isDefault": false
+    },
+    {
+      "id": "qty-10",
+      "groupKey": "Group.Quantity",
+      "kind": "Quantity",
+      "nameKey": "Param.Qty10",
+      "valueKey": "Param.Qty10.Value",
+      "priceModifier": 1.0,
+      "quantity": 10,
+      "isDefault": true
+    },
+    {
+      "id": "qty-25",
+      "groupKey": "Group.Quantity",
+      "kind": "Quantity",
+      "nameKey": "Param.Qty25",
+      "valueKey": "Param.Qty25.Value",
+      "priceModifier": 0.9,
+      "quantity": 25,
+      "isDefault": false
+    },
+    {
+      "id": "qty-100",
+      "groupKey": "Group.Quantity",
+      "kind": "Quantity",
+      "nameKey": "Param.Qty100",
+      "valueKey": "Param.Qty100.Value",
+      "priceModifier": 0.75,
+      "quantity": 100,
+      "isDefault": false
+    },
+    {
+      "id": "layers-2",
+      "groupKey": "Group.Layers",
+      "kind": "Layers",
+      "nameKey": "Param.Layers2",
+      "valueKey": "Param.Layers2.Value",
+      "priceModifier": 1.0,
+      "layerCount": 2,
+      "productionDaysExtra": 0,
+      "isDefault": true
+    },
+    {
+      "id": "layers-4",
+      "groupKey": "Group.Layers",
+      "kind": "Layers",
+      "nameKey": "Param.Layers4",
+      "valueKey": "Param.Layers4.Value",
+      "priceModifier": 1.65,
+      "layerCount": 4,
+      "productionDaysExtra": 2,
+      "isDefault": false
+    },
+    {
+      "id": "layers-6",
+      "groupKey": "Group.Layers",
+      "kind": "Layers",
+      "nameKey": "Param.Layers6",
+      "valueKey": "Param.Layers6.Value",
+      "priceModifier": 2.25,
+      "layerCount": 6,
+      "productionDaysExtra": 3,
+      "isDefault": false
+    },
+    {
+      "id": "layers-8",
+      "groupKey": "Group.Layers",
+      "kind": "Layers",
+      "nameKey": "Param.Layers8",
+      "valueKey": "Param.Layers8.Value",
+      "priceModifier": 2.9,
+      "layerCount": 8,
+      "productionDaysExtra": 5,
+      "isDefault": false
+    },
+    {
+      "id": "finish-hasl",
+      "groupKey": "Group.Finish",
+      "kind": "Finish",
+      "nameKey": "Param.Hasl",
+      "valueKey": "Param.Hasl.Value",
+      "priceModifier": 1.0,
+      "finishId": "hasl",
+      "isDefault": true
+    },
+    {
+      "id": "finish-enig",
+      "groupKey": "Group.Finish",
+      "kind": "Finish",
+      "nameKey": "Param.Enig",
+      "valueKey": "Param.Enig.Value",
+      "priceModifier": 1.4,
+      "productionDaysExtra": 1,
+      "finishId": "enig",
+      "isDefault": false
+    },
+    {
+      "id": "finish-osp",
+      "groupKey": "Group.Finish",
+      "kind": "Finish",
+      "nameKey": "Param.Osp",
+      "valueKey": "Param.Osp.Value",
+      "priceModifier": 0.92,
+      "finishId": "osp",
+      "isDefault": false
+    }
+  ]
+}
