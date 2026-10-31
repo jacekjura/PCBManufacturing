@@ -31,7 +31,7 @@
                                                              GroupName="{Binding $parent[ItemsControl].((vm:ParameterGroupViewModel)DataContext).GroupKey}"
                                                              IsChecked="{Binding IsSelected}">
                                                     <Grid ColumnDefinitions="28,*,*,110,120">
-                                                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Check}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding IsSelected}" Foreground="{DynamicResource SystemControlForegroundAccentBrush}"/>
+                                                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Check}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding IsSelected}" Foreground="{DynamicResource Brush.Accent}"/>
                                                         <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"/>
                                                         <TextBlock Grid.Column="2" Text="{Binding Value}" VerticalAlignment="Center"/>
                                                         <TextBlock Grid.Column="3" Text="{Binding TimeImpact}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -82,19 +82,19 @@
                             </ItemsControl>
                         </Viewbox>
                         <WrapPanel Margin="0,12,0,0">
-                            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                            <Border Background="{DynamicResource Brush.CardAlt}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
                                 <StackPanel Orientation="Horizontal" Spacing="6">
                                     <Ellipse Width="10" Height="10" Fill="{Binding PreviewMaskHex, Converter={StaticResource HexToBrush}}"/>
                                     <TextBlock Text="{Binding LegendMask}"/>
                                 </StackPanel>
                             </Border>
-                            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                            <Border Background="{DynamicResource Brush.CardAlt}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
                                 <TextBlock Text="{Binding LegendSize}"/>
                             </Border>
-                            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                            <Border Background="{DynamicResource Brush.CardAlt}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
                                 <TextBlock Text="{Binding LegendLayers}"/>
                             </Border>
-                            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
+                            <Border Background="{DynamicResource Brush.CardAlt}" CornerRadius="12" Padding="10,4" Margin="0,0,8,8">
                                 <TextBlock Text="{Binding LegendFinish}"/>
                             </Border>
                         </WrapPanel>

@@ -35,6 +35,29 @@ public sealed class AppTests
     }
 
     [Fact]
+    public void DarkPalette_UsesReadableSurfaces()
+    {
+        var theme = File.ReadAllText(Path.Combine(FindAvaloniaProject(), "App.axaml"));
+        Assert.Contains("x:Key=\"Dark\"", theme, StringComparison.Ordinal);
+        Assert.Contains("x:Key=\"Brush.App\" Color=\"#1C1C1C\"", theme, StringComparison.Ordinal);
+        Assert.Contains("x:Key=\"Brush.Card\" Color=\"#2B2B2B\"", theme, StringComparison.Ordinal);
+        Assert.Contains("x:Key=\"Brush.TextPrimary\" Color=\"#FFFFFF\"", theme, StringComparison.Ordinal);
+        Assert.Contains("x:Key=\"Brush.Error\" Color=\"#FF6B6B\"", theme, StringComparison.Ordinal);
+        Assert.Contains("x:Key=\"Brush.Success\" Color=\"#6CCB5F\"", theme, StringComparison.Ordinal);
+        Assert.Contains("x:Key=\"Brush.Preview\" Color=\"#141414\"", theme, StringComparison.Ordinal);
+
+        foreach (var file in Directory.EnumerateFiles(FindAvaloniaProject(), "*.axaml", SearchOption.AllDirectories))
+        {
+            if (string.Equals(Path.GetFileName(file), "App.axaml", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var text = File.ReadAllText(file);
+            Assert.DoesNotContain("SystemControlBackgroundChromeWhiteBrush", text, StringComparison.Ordinal);
+            Assert.DoesNotContain("SystemControlErrorTextForegroundBrush", text, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
     public void Views_DoNotBindRemovedFluentResources()
     {
         var root = FindAvaloniaProject();

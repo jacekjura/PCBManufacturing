@@ -8,7 +8,9 @@
         SizeToContent="Height"
         MinHeight="180"
         WindowStartupLocation="CenterOwner"
-        CanResize="False">
+        CanResize="False"
+        Background="{DynamicResource Brush.App}"
+        Foreground="{DynamicResource Brush.TextPrimary}">
     <Grid Margin="24" RowDefinitions="Auto,Auto,Auto,Auto">
         <TextBlock Classes="h1" Text="{Binding Content.Title}" TextWrapping="Wrap"/>
         <TextBlock Grid.Row="1" Classes="caption" Text="{Binding Content.Message}" Margin="0,8,0,16"/>

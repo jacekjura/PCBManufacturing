@@ -14,12 +14,12 @@
                     <StackPanel Spacing="0">
                         <TextBlock Classes="label" Text="{Binding Text[Field.Project]}"/>
                         <TextBox Text="{Binding ProjectName}" Classes.invalid="{Binding HasProjectError}"/>
-                        <TextBlock Text="{Binding ProjectMessage}" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" FontSize="12" IsVisible="{Binding HasProjectError}" Margin="2,4,0,12"/>
+                        <TextBlock Text="{Binding ProjectMessage}" Foreground="{DynamicResource Brush.Error}" FontSize="12" IsVisible="{Binding HasProjectError}" Margin="2,4,0,12"/>
 
                         <TextBlock Classes="label" Text="{Binding Text[Field.Postcode]}"/>
                         <TextBox Text="{Binding Postcode}" Classes.invalid="{Binding HasPostcodeError}" Classes.valid="{Binding IsPostcodeValid}"/>
                         <TextBlock Classes="caption" Text="{Binding Text[Field.Postcode.Hint]}" Margin="2,4,0,0"/>
-                        <TextBlock Text="{Binding PostcodeMessage}" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" FontSize="12" IsVisible="{Binding HasPostcodeError}" TextWrapping="Wrap" Margin="2,4,0,0"/>
+                        <TextBlock Text="{Binding PostcodeMessage}" Foreground="{DynamicResource Brush.Error}" FontSize="12" IsVisible="{Binding HasPostcodeError}" TextWrapping="Wrap" Margin="2,4,0,0"/>
                         <TextBlock Text="{Binding SummaryPostcodeState}" Foreground="{DynamicResource Brush.Success}" FontSize="12" IsVisible="{Binding IsPostcodeValid}" Margin="2,4,0,12"/>
 
                         <TextBlock Classes="label" Text="{Binding Text[Field.Material]}"/>
