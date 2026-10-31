@@ -26,6 +26,7 @@
   <ItemGroup>
     <Content Include="..\..\src\PCBManufacturing.Wpf\Themes\Light.xaml" Link="Themes\Light.xaml" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\src\PCBManufacturing.Wpf\Themes\Dark.xaml" Link="Themes\Dark.xaml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\src\PCBManufacturing.Wpf\Themes\Fluent.xaml" Link="Themes\Fluent.xaml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

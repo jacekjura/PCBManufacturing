@@ -18,4 +18,8 @@
     <SolidColorBrush x:Key="Brush.Success" Color="#0F7B0F"/>
     <SolidColorBrush x:Key="Brush.SuccessSubtle" Color="#E8F6E8"/>
     <SolidColorBrush x:Key="Brush.Preview" Color="#E6E6E6"/>
+    <SolidColorBrush x:Key="Brush.ScrollTrack" Color="#E8E8E8"/>
+    <SolidColorBrush x:Key="Brush.ScrollThumb" Color="#6B6B6B"/>
+    <SolidColorBrush x:Key="Brush.ScrollThumbHover" Color="#5A5A5A"/>
+    <SolidColorBrush x:Key="Brush.ScrollThumbPressed" Color="#454545"/>
 </ResourceDictionary>
