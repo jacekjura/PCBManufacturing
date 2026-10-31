@@ -51,7 +51,9 @@ public sealed partial class MainViewModel : ObservableObject
     public ILocalizationService Localization { get; }
     public IAsyncRelayCommand PlaceOrderCommand => Order.PlaceOrderCommand;
 
-    [ObservableProperty] private int selectedTabIndex;
+    [ObservableProperty] private bool isPreferencesExpanded;
+    [ObservableProperty] private bool isQuoteExpanded = true;
+    [ObservableProperty] private bool isOrdersExpanded = true;
     [ObservableProperty] private AppTheme theme = AppTheme.Light;
     [ObservableProperty] private string culture = "en";
     [ObservableProperty] private string statusText = "";
@@ -105,7 +107,7 @@ public sealed partial class MainViewModel : ObservableObject
     private async Task ContinueAsync()
     {
         await SaveAsync().ConfigureAwait(true);
-        UiThread.Run(_ui, () => SelectedTabIndex = 1);
+        UiThread.Run(_ui, () => IsQuoteExpanded = true);
     }
 
     [RelayCommand]

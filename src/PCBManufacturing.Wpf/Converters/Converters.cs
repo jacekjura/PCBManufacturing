@@ -60,3 +60,56 @@ public sealed class BoolToVisibilityConverter : IValueConverter
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
         value is Visibility.Visible;
 }
+
+public sealed class BoolToGridLengthConverter : IValueConverter
+{
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is not true)
+            return GridLength.Auto;
+
+        var stars = 1d;
+        if (parameter is string text
+            && double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsed)
+            && parsed > 0)
+        {
+            stars = parsed;
+        }
+
+        return new GridLength(stars, GridUnitType.Star);
+    }
+
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
+public sealed class BoolToDoubleConverter : IValueConverter
+{
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is not true)
+            return 0d;
+
+        return parameter is string text
+            && double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsed)
+            ? parsed
+            : 0d;
+    }
+
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
+public sealed class BindingProxy : Freezable
+{
+    public static readonly DependencyProperty DataProperty =
+        DependencyProperty.Register(nameof(Data), typeof(object), typeof(BindingProxy));
+
+    public object? Data
+    {
+        get => GetValue(DataProperty);
+        set => SetValue(DataProperty, value);
+    }
+
+    protected override Freezable CreateInstanceCore() => new BindingProxy();
+}

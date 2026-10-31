@@ -48,4 +48,18 @@ public class MainViewModelTests
         Assert.Equal("size-100", graph.Quote.SelectedSize?.Id);
         Assert.Equal(AppTheme.Dark, graph.Main.Theme);
     }
+
+    [Fact]
+    public async Task Continue_OpensTheQuoteSection()
+    {
+        var graph = ViewModelGraph.Create();
+        Assert.False(graph.Main.IsPreferencesExpanded);
+        Assert.True(graph.Main.IsQuoteExpanded);
+        Assert.True(graph.Main.IsOrdersExpanded);
+
+        graph.Main.IsQuoteExpanded = false;
+        await graph.Main.ContinueCommand.ExecuteAsync(null);
+
+        Assert.True(graph.Main.IsQuoteExpanded);
+    }
 }

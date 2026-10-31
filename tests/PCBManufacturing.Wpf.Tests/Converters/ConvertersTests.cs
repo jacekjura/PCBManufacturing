@@ -43,4 +43,24 @@ public sealed class ConvertersTests
         Assert.Equal(Visibility.Collapsed, converter.Convert(true, typeof(Visibility), "Invert", CultureInfo.InvariantCulture));
         Assert.Equal(true, converter.ConvertBack(Visibility.Visible, typeof(bool), null, CultureInfo.InvariantCulture));
     }
+
+    [Fact]
+    public void BoolToGridLengthConverter_UsesStarWhenExpanded()
+    {
+        var converter = new BoolToGridLengthConverter();
+        var collapsed = Assert.IsType<GridLength>(converter.Convert(false, typeof(GridLength), "3", CultureInfo.InvariantCulture));
+        Assert.True(collapsed.IsAuto);
+
+        var expanded = Assert.IsType<GridLength>(converter.Convert(true, typeof(GridLength), "3", CultureInfo.InvariantCulture));
+        Assert.True(expanded.IsStar);
+        Assert.Equal(3, expanded.Value);
+    }
+
+    [Fact]
+    public void BoolToDoubleConverter_ReturnsZeroWhenCollapsed()
+    {
+        var converter = new BoolToDoubleConverter();
+        Assert.Equal(0d, converter.Convert(false, typeof(double), "260", CultureInfo.InvariantCulture));
+        Assert.Equal(260d, converter.Convert(true, typeof(double), "260", CultureInfo.InvariantCulture));
+    }
 }

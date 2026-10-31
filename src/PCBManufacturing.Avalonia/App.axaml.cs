@@ -57,5 +57,10 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime
+            && lifetime.MainWindow is { IsVisible: false } window)
+        {
+            window.Show();
+        }
     }
 }

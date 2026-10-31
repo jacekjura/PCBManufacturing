@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:behaviors="clr-namespace:PCBManufacturing.Wpf.Behaviors"
+        xmlns:conv="clr-namespace:PCBManufacturing.Wpf.Converters"
         xmlns:markup="clr-namespace:PCBManufacturing.Wpf.Markup"
         xmlns:views="clr-namespace:PCBManufacturing.Wpf.Views"
         Title="{Binding Localization[App.Title]}"
@@ -17,6 +18,9 @@
         UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen"
         behaviors:WindowTheme.Theme="{Binding Theme}">
+    <Window.Resources>
+        <conv:BindingProxy x:Key="SectionProxy" Data="{Binding}"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -87,38 +91,34 @@
 
         <ProgressBar Grid.Row="1" Height="3" Margin="24,8,24,0" BorderThickness="0" Background="Transparent" Foreground="{DynamicResource Brush.Accent}" IsIndeterminate="True" Visibility="{Binding Order.IsBusy, Converter={StaticResource BoolToVisibility}}"/>
 
-        <TabControl Grid.Row="2" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-            <TabItem AutomationProperties.Name="{Binding Localization[Tab.Preferences]}">
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Preferences}" FontSize="15" Margin="0,0,8,0"/>
-                        <TextBlock Text="{Binding DataContext.Localization[Tab.Preferences], RelativeSource={RelativeSource AncestorType=Window}}"/>
-                    </StackPanel>
-                </TabItem.Header>
+        <Grid Grid.Row="2" Margin="24,12,24,16">
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="{Binding Data.IsPreferencesExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToDouble}, ConverterParameter=260}" Height="{Binding Data.IsPreferencesExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}}"/>
+                <RowDefinition Height="{Binding Data.IsQuoteExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}, ConverterParameter=3}"/>
+                <RowDefinition Height="{Binding Data.IsOrdersExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}, ConverterParameter=2}"/>
+            </Grid.RowDefinitions>
+            <Expander Grid.Row="0" IsExpanded="{Binding IsPreferencesExpanded, Mode=TwoWay}" AutomationProperties.Name="{Binding Localization[Tab.Preferences]}">
+                <Expander.Header>
+                    <TextBlock Text="{Binding Localization[Tab.Preferences]}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                </Expander.Header>
                 <views:PreferencesView Validation.ErrorTemplate="{x:Null}">
                     <views:PreferencesView.DataContext>
                         <Binding Path="Preferences" ValidatesOnNotifyDataErrors="False"/>
                     </views:PreferencesView.DataContext>
                 </views:PreferencesView>
-            </TabItem>
-            <TabItem AutomationProperties.Name="{Binding Localization[Tab.Quote]}">
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Quote}" FontSize="15" Margin="0,0,8,0"/>
-                        <TextBlock Text="{Binding DataContext.Localization[Tab.Quote], RelativeSource={RelativeSource AncestorType=Window}}"/>
-                    </StackPanel>
-                </TabItem.Header>
+            </Expander>
+            <Expander Grid.Row="1" IsExpanded="{Binding IsQuoteExpanded, Mode=TwoWay}" AutomationProperties.Name="{Binding Localization[Tab.Quote]}">
+                <Expander.Header>
+                    <TextBlock Text="{Binding Localization[Tab.Quote]}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                </Expander.Header>
                 <views:QuoteView DataContext="{Binding Quote}"/>
-            </TabItem>
-            <TabItem AutomationProperties.Name="{Binding Localization[Tab.Order]}">
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource Icon}" Text="{markup:Icon Order}" FontSize="15" Margin="0,0,8,0"/>
-                        <TextBlock Text="{Binding DataContext.Localization[Tab.Order], RelativeSource={RelativeSource AncestorType=Window}}"/>
-                    </StackPanel>
-                </TabItem.Header>
+            </Expander>
+            <Expander Grid.Row="2" IsExpanded="{Binding IsOrdersExpanded, Mode=TwoWay}" AutomationProperties.Name="{Binding Localization[Tab.Order]}">
+                <Expander.Header>
+                    <TextBlock Text="{Binding Localization[Tab.Order]}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                </Expander.Header>
                 <views:OrderView DataContext="{Binding Order}"/>
-            </TabItem>
-        </TabControl>
+            </Expander>
+        </Grid>
     </Grid>
 </Window>

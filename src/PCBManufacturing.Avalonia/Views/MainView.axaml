@@ -45,34 +45,30 @@
             </StackPanel>
         </Grid>
         <ProgressBar Grid.Row="1" Height="3" Margin="0,10,0,0" IsIndeterminate="True" IsVisible="{Binding Order.IsBusy}"/>
-        <TabControl Grid.Row="2" Margin="0,8,0,0" SelectedIndex="{Binding SelectedTabIndex}">
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Preferences}" FontSize="15"/>
-                        <TextBlock Text="{Binding #Root.((vm:MainViewModel)DataContext).Localization[Tab.Preferences]}"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <ContentControl Content="{Binding Preferences}"/>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Quote}" FontSize="15"/>
-                        <TextBlock Text="{Binding #Root.((vm:MainViewModel)DataContext).Localization[Tab.Quote]}"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <ContentControl Content="{Binding Quote}"/>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <ic:SymbolIcon Classes="icon" Symbol="{local:Icon Order}" FontSize="15"/>
-                        <TextBlock Text="{Binding #Root.((vm:MainViewModel)DataContext).Localization[Tab.Order]}"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <ContentControl Content="{Binding Order}"/>
-            </TabItem>
-        </TabControl>
+        <Grid x:Name="Sections" Grid.Row="2" Margin="0,12,0,8">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Expander Grid.Row="0" Classes="section" IsExpanded="{Binding IsPreferencesExpanded, Mode=TwoWay}" AutomationProperties.Name="{Binding Localization[Tab.Preferences]}">
+                <Expander.Header>
+                    <TextBlock Text="{Binding Localization[Tab.Preferences]}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                </Expander.Header>
+                <ContentControl Content="{Binding Preferences}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Expander>
+            <Expander Grid.Row="1" Classes="section" IsExpanded="{Binding IsQuoteExpanded, Mode=TwoWay}" AutomationProperties.Name="{Binding Localization[Tab.Quote]}">
+                <Expander.Header>
+                    <TextBlock Text="{Binding Localization[Tab.Quote]}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                </Expander.Header>
+                <ContentControl Content="{Binding Quote}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Expander>
+            <Expander Grid.Row="2" Classes="section" IsExpanded="{Binding IsOrdersExpanded, Mode=TwoWay}" AutomationProperties.Name="{Binding Localization[Tab.Order]}">
+                <Expander.Header>
+                    <TextBlock Text="{Binding Localization[Tab.Order]}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                </Expander.Header>
+                <ContentControl Content="{Binding Order}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Expander>
+        </Grid>
     </Grid>
 </UserControl>
