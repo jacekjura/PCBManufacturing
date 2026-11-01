@@ -1,10 +1,10 @@
 using PCBManufacturing.Core;
-using PCBManufacturing.Core.Catalog;
+using PCBManufacturing.Core.Services.Catalog;
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Validation;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.Core.Services.Validation;
+using PCBManufacturing.PresentationLogic.ViewModels;
 
-namespace PCBManufacturing.ViewModels.Tests;
+namespace PCBManufacturing.PresentationLogic.Tests.ViewModels;
 
 public class PreferencesViewModelTests
 {

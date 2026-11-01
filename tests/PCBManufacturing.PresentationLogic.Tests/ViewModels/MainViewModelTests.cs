@@ -1,6 +1,7 @@
-using PCBManufacturing.Core.Models;
+using PCBManufacturing.Core.Models.Catalog;
+using PCBManufacturing.Core.Models.Theming;
 
-namespace PCBManufacturing.ViewModels.Tests;
+namespace PCBManufacturing.PresentationLogic.Tests.ViewModels;
 
 public class MainViewModelTests
 {

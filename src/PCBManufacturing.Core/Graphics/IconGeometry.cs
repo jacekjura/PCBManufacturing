@@ -1,7 +1,5 @@
 namespace PCBManufacturing.Core.Graphics;
 
-public readonly record struct IconDefinition(string SegoeGlyph, string FluentSymbol);
-
 public static class IconGeometry
 {
     public const string SegoeFontFamily = "Segoe Fluent Icons, Segoe MDL2 Assets";

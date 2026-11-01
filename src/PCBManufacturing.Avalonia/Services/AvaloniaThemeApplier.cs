@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Styling;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Theming;
+using PCBManufacturing.Core.Models.Theming;
+using PCBManufacturing.Core.Services.Theming;
 
 namespace PCBManufacturing.AvaloniaApp.Services;
 

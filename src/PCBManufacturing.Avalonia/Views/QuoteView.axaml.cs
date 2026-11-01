@@ -1,5 +1,5 @@
 using System.ComponentModel;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.PresentationLogic.ViewModels;
 using ReactiveUI;
 using ReactiveUI.Avalonia;
 

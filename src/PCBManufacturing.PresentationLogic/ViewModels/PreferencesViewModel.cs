@@ -1,11 +1,14 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using PCBManufacturing.Core.Catalog;
+using PCBManufacturing.Core.Services.Catalog;
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Validation;
+using PCBManufacturing.Core.Localization.Keys;
+using PCBManufacturing.Core.Models.Catalog;
+using PCBManufacturing.Core.Models.Preferences;
+using PCBManufacturing.Core.Services.Validation;
+using PCBManufacturing.PresentationLogic;
 
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic.ViewModels;
 
 public sealed partial class PreferencesViewModel : ValidatingObservableObject
 {

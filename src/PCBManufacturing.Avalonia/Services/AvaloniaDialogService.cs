@@ -2,9 +2,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using PCBManufacturing.AvaloniaApp.Views;
-using PCBManufacturing.Core.Dialogs;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.Core.Services.Dialogs;
+using PCBManufacturing.Core.Models.Dialogs;
+using PCBManufacturing.PresentationLogic.ViewModels;
 
 namespace PCBManufacturing.AvaloniaApp.Services;
 

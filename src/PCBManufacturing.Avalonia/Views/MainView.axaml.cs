@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using Avalonia.Controls;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.PresentationLogic.ViewModels;
 using ReactiveUI;
 using ReactiveUI.Avalonia;
 

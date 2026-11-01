@@ -1,8 +1,8 @@
 using PCBManufacturing.Core;
-using PCBManufacturing.Core.Catalog;
-using PCBManufacturing.Core.Models;
+using PCBManufacturing.Core.Services.Catalog;
+using PCBManufacturing.Core.Models.Catalog;
 
-namespace PCBManufacturing.Core.Tests.Catalog;
+namespace PCBManufacturing.Core.Tests.Services.Catalog;
 
 public class JsonCatalogServiceTests
 {

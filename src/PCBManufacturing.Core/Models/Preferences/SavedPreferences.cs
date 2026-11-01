@@ -1,4 +1,7 @@
-namespace PCBManufacturing.Core.Models;
+using PCBManufacturing.Core.Models.Catalog;
+using PCBManufacturing.Core.Models.Theming;
+
+namespace PCBManufacturing.Core.Models.Preferences;
 
 public sealed record SavedPreferences
 {

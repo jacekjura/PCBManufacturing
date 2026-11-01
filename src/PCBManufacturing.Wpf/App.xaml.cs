@@ -1,10 +1,11 @@
-﻿using System.IO;
+using System.IO;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PCBManufacturing.Core.Dialogs;
-using PCBManufacturing.Core.Theming;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.Core.Services.Dialogs;
+using PCBManufacturing.Core.Services.Theming;
+using PCBManufacturing.PresentationLogic;
+using PCBManufacturing.PresentationLogic.ViewModels;
 using PCBManufacturing.Wpf.Services;
 
 namespace PCBManufacturing.Wpf;

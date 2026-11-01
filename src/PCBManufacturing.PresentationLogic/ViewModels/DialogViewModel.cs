@@ -1,8 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using PCBManufacturing.Core.Models;
+using PCBManufacturing.Core.Models.Dialogs;
 
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic.ViewModels;
 
 public sealed partial class DialogViewModel : ObservableObject
 {

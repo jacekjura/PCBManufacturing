@@ -5,15 +5,6 @@ using PCBManufacturing.Core.Json;
 
 namespace PCBManufacturing.Core.Localization;
 
-public interface ILocalizationService : INotifyPropertyChanged
-{
-    string Culture { get; }
-    CultureInfo CultureInfo { get; }
-    string this[string key] { get; }
-    void SetCulture(string culture);
-    string Format(string key, params object[] args);
-}
-
 public sealed class JsonLocalizationService : ILocalizationService
 {
     private readonly string _directory;

@@ -1,17 +1,14 @@
 using PCBManufacturing.Core;
-using PCBManufacturing.Core.Catalog;
-using PCBManufacturing.Core.Dialogs;
+using PCBManufacturing.Core.Services.Catalog;
 using PCBManufacturing.Core.Graphics;
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Ordering;
-using PCBManufacturing.Core.Preferences;
-using PCBManufacturing.Core.Pricing;
-using PCBManufacturing.Core.Theming;
-using PCBManufacturing.Core.Validation;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.Core.Services.Ordering;
+using PCBManufacturing.Core.Services.Preferences;
+using PCBManufacturing.Core.Services.Pricing;
+using PCBManufacturing.Core.Services.Validation;
+using PCBManufacturing.PresentationLogic.ViewModels;
 
-namespace PCBManufacturing.ViewModels.Tests;
+namespace PCBManufacturing.PresentationLogic.Tests.ViewModels;
 
 internal sealed class ViewModelGraph
 {
@@ -23,7 +20,6 @@ internal sealed class ViewModelGraph
     public required FakeOrders Orders { get; init; }
     public required FakeThemes Themes { get; init; }
     public required JsonOrderHistoryStore History { get; init; }
-
     public static ViewModelGraph Create(string? directory = null)
     {
         directory ??= Path.Combine(Path.GetTempPath(), "pcb-tests", Guid.NewGuid().ToString());
@@ -59,60 +55,4 @@ internal sealed class ViewModelGraph
             History = history
         };
     }
-}
-
-internal sealed class FakeDialogs : IDialogService
-{
-    public bool ConfirmResult { get; set; } = true;
-    public List<DialogContent> Confirmations { get; } = [];
-    public List<DialogContent> Alerts { get; } = [];
-
-    public Task<bool> ConfirmAsync(DialogContent content, CancellationToken cancellationToken = default)
-    {
-        Confirmations.Add(content);
-        return Task.FromResult(ConfirmResult);
-    }
-
-    public Task AlertAsync(DialogContent content, CancellationToken cancellationToken = default)
-    {
-        Alerts.Add(content);
-        return Task.CompletedTask;
-    }
-}
-
-internal sealed class FakeOrders : IOrderService
-{
-    public List<OrderDraft> Submitted { get; } = [];
-    public TimeSpan Delay { get; set; } = TimeSpan.Zero;
-
-    public async Task<OrderConfirmation> SubmitAsync(OrderDraft draft, CancellationToken cancellationToken = default)
-    {
-        Submitted.Add(draft);
-        if (Delay > TimeSpan.Zero)
-            await Task.Delay(Delay, cancellationToken);
-        return new OrderConfirmation
-        {
-            Number = "PCB-TEST",
-            CreatedAt = DateTimeOffset.UnixEpoch,
-            ProjectName = draft.ProjectName,
-            Postcode = draft.Postcode,
-            Total = draft.Total,
-            Currency = draft.Currency,
-            Quantity = draft.Quantity,
-            ProductionDays = draft.ProductionDays,
-            MaterialKey = draft.MaterialKey,
-            MaskKey = draft.MaskKey,
-            MaskHex = draft.MaskHex,
-            ThicknessKey = draft.ThicknessKey,
-            SizeKey = draft.SizeKey,
-            FinishKey = draft.FinishKey,
-            Layers = draft.Layers
-        };
-    }
-}
-
-internal sealed class FakeThemes : IThemeApplier
-{
-    public List<AppTheme> Applications { get; } = [];
-    public void Apply(AppTheme theme) => Applications.Add(theme);
 }

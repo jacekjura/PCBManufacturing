@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <RootNamespace>PCBManufacturing.ViewModels</RootNamespace>
+    <RootNamespace>PCBManufacturing.PresentationLogic</RootNamespace>
     <Description>Shared MVVM layer used by the WPF and Avalonia PCB Manufacturing apps.</Description>
   </PropertyGroup>
 

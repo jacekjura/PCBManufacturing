@@ -28,7 +28,7 @@ Catalog options and English/Russian strings ship as JSON next to the app (`catal
 | Project | Role |
 | --- | --- |
 | `PCBManufacturing.Core` | Models, JSON catalog, pricing, postcode rules, artwork geometry, localization, preferences, and order history. No UI toolkit. |
-| `PCBManufacturing.ViewModels` | Shared MVVM surface (`CommunityToolkit.Mvvm`): preferences, quote, order, and the shell. |
+| `PCBManufacturing.PresentationLogic` | Shared MVVM surface (`CommunityToolkit.Mvvm`): preferences, quote, order, and the shell. |
 | `PCBManufacturing.Wpf` | Windows desktop UI. Custom control templates, light/dark palettes, vector icons. |
 | `PCBManufacturing.Avalonia` | Windows desktop UI on Avalonia 12 Fluent theme, with ReactiveUI activation and data templates that map each view model to a view. |
 | `tests/*` | xUnit project for each of the four projects above. |

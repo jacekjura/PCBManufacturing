@@ -1,11 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace PCBManufacturing.Core.Validation;
-
-public interface IPostcodeValidator
-{
-    PostcodeValidationResult Validate(string? postcode);
-}
+namespace PCBManufacturing.Core.Services.Validation;
 
 /// <summary>
 /// Accepts a US ZIP, a UK postcode, or a 6-digit Russian postal index.

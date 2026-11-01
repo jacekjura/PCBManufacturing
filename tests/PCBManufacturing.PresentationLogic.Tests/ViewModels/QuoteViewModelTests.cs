@@ -1,13 +1,14 @@
 using PCBManufacturing.Core;
-using PCBManufacturing.Core.Catalog;
+using PCBManufacturing.Core.Services.Catalog;
 using PCBManufacturing.Core.Graphics;
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Pricing;
-using PCBManufacturing.Core.Validation;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.Core.Models.Artwork;
+using PCBManufacturing.Core.Models.Catalog;
+using PCBManufacturing.Core.Services.Pricing;
+using PCBManufacturing.Core.Services.Validation;
+using PCBManufacturing.PresentationLogic.ViewModels;
 
-namespace PCBManufacturing.ViewModels.Tests;
+namespace PCBManufacturing.PresentationLogic.Tests.ViewModels;
 
 public class QuoteViewModelTests
 {

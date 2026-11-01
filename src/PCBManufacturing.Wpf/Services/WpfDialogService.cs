@@ -1,7 +1,7 @@
 using System.Windows;
-using PCBManufacturing.Core.Dialogs;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.Core.Services.Dialogs;
+using PCBManufacturing.Core.Models.Dialogs;
+using PCBManufacturing.PresentationLogic.ViewModels;
 using PCBManufacturing.Wpf.Views;
 
 namespace PCBManufacturing.Wpf.Services;

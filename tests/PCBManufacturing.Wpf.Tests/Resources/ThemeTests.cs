@@ -6,7 +6,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace PCBManufacturing.Wpf.Tests.Themes;
+namespace PCBManufacturing.Wpf.Tests.Resources;
 
 public sealed class ThemeTests
 {
@@ -43,7 +43,7 @@ public sealed class ThemeTests
     {
         StaThread.Run(() =>
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "Themes", fileName);
+            var path = Path.Combine(AppContext.BaseDirectory, "Resources", fileName);
             using var stream = File.OpenRead(path);
             var dictionary = Assert.IsType<ResourceDictionary>(XamlReader.Load(stream));
             foreach (var key in ThemeBrushes)
@@ -56,7 +56,7 @@ public sealed class ThemeTests
     {
         StaThread.Run(() =>
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "Themes", "Fluent.xaml");
+            var path = Path.Combine(AppContext.BaseDirectory, "Resources", "Fluent.xaml");
             using var stream = File.OpenRead(path);
             var dictionary = Assert.IsType<ResourceDictionary>(XamlReader.Load(stream));
             Assert.IsType<Style>(dictionary[typeof(ScrollBar)]);
@@ -112,7 +112,7 @@ public sealed class ThemeTests
 
     private static ResourceDictionary LoadDictionary(string fileName)
     {
-        var path = Path.Combine(AppContext.BaseDirectory, "Themes", fileName);
+        var path = Path.Combine(AppContext.BaseDirectory, "Resources", fileName);
         using var stream = File.OpenRead(path);
         return Assert.IsType<ResourceDictionary>(XamlReader.Load(stream));
     }

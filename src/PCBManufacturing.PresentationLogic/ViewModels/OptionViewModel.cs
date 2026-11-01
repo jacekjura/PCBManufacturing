@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic.ViewModels;
 
 public sealed partial class OptionViewModel : ObservableObject
 {

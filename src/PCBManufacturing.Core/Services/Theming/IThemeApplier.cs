@@ -1,6 +1,6 @@
-using PCBManufacturing.Core.Models;
+using PCBManufacturing.Core.Models.Theming;
 
-namespace PCBManufacturing.Core.Theming;
+namespace PCBManufacturing.Core.Services.Theming;
 
 public interface IThemeApplier
 {

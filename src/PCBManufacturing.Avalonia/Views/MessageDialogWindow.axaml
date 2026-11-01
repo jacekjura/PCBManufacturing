@@ -1,6 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:PCBManufacturing.ViewModels"
+        xmlns:vm="using:PCBManufacturing.PresentationLogic.ViewModels"
         x:Class="PCBManufacturing.AvaloniaApp.Views.MessageDialogWindow"
         x:DataType="vm:DialogViewModel"
         Title="{Binding Content.Title}"

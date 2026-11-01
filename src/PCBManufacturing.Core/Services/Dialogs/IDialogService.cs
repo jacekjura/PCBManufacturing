@@ -1,6 +1,6 @@
-using PCBManufacturing.Core.Models;
+using PCBManufacturing.Core.Models.Dialogs;
 
-namespace PCBManufacturing.Core.Dialogs;
+namespace PCBManufacturing.Core.Services.Dialogs;
 
 public interface IDialogService
 {

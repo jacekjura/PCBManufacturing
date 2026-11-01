@@ -1,6 +1,6 @@
-using PCBManufacturing.Core.Validation;
+using PCBManufacturing.Core.Services.Validation;
 
-namespace PCBManufacturing.Core.Tests.Validation;
+namespace PCBManufacturing.Core.Tests.Services.Validation;
 
 public class PostcodeValidatorTests
 {

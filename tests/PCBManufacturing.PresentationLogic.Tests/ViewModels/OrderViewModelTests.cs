@@ -1,4 +1,4 @@
-namespace PCBManufacturing.ViewModels.Tests;
+namespace PCBManufacturing.PresentationLogic.Tests.ViewModels;
 
 public class OrderViewModelTests
 {

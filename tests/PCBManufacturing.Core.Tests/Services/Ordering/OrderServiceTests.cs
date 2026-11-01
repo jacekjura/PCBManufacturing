@@ -1,8 +1,9 @@
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Ordering;
+using PCBManufacturing.Core.Localization.Keys;
+using PCBManufacturing.Core.Models.Ordering;
+using PCBManufacturing.Core.Services.Ordering;
 
-namespace PCBManufacturing.Core.Tests.Ordering;
+namespace PCBManufacturing.Core.Tests.Services.Ordering;
 
 public class OrderServiceTests
 {

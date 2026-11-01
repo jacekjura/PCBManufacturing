@@ -1,13 +1,17 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using PCBManufacturing.Core.Catalog;
+using PCBManufacturing.Core.Services.Catalog;
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Ordering;
-using PCBManufacturing.Core.Preferences;
-using PCBManufacturing.Core.Theming;
+using PCBManufacturing.Core.Localization.Keys;
+using PCBManufacturing.Core.Models.Catalog;
+using PCBManufacturing.Core.Models.Preferences;
+using PCBManufacturing.Core.Models.Theming;
+using PCBManufacturing.Core.Services.Ordering;
+using PCBManufacturing.Core.Services.Preferences;
+using PCBManufacturing.Core.Services.Theming;
+using PCBManufacturing.PresentationLogic;
 
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic.ViewModels;
 
 public sealed partial class MainViewModel : ObservableObject
 {

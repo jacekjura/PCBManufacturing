@@ -2,7 +2,7 @@ using System.Collections;
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic;
 
 public abstract partial class ValidatingObservableObject : ObservableObject, INotifyDataErrorInfo
 {

@@ -1,11 +1,4 @@
-namespace PCBManufacturing.Core.Validation;
-
-public enum PostcodeError
-{
-    None,
-    Empty,
-    Invalid
-}
+namespace PCBManufacturing.Core.Services.Validation;
 
 public readonly record struct PostcodeValidationResult(bool IsValid, PostcodeError Error)
 {

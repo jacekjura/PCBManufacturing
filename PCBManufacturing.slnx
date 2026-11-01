@@ -2,13 +2,13 @@
   <Folder Name="/src/">
     <Project Path="src/PCBManufacturing.Avalonia/PCBManufacturing.Avalonia.csproj" />
     <Project Path="src/PCBManufacturing.Core/PCBManufacturing.Core.csproj" />
-    <Project Path="src/PCBManufacturing.ViewModels/PCBManufacturing.ViewModels.csproj" />
+    <Project Path="src/PCBManufacturing.PresentationLogic/PCBManufacturing.PresentationLogic.csproj" />
     <Project Path="src/PCBManufacturing.Wpf/PCBManufacturing.Wpf.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/PCBManufacturing.Avalonia.Tests/PCBManufacturing.Avalonia.Tests.csproj" />
     <Project Path="tests/PCBManufacturing.Core.Tests/PCBManufacturing.Core.Tests.csproj" />
-    <Project Path="tests/PCBManufacturing.ViewModels.Tests/PCBManufacturing.ViewModels.Tests.csproj" />
+    <Project Path="tests/PCBManufacturing.PresentationLogic.Tests/PCBManufacturing.PresentationLogic.Tests.csproj" />
     <Project Path="tests/PCBManufacturing.Wpf.Tests/PCBManufacturing.Wpf.Tests.csproj" />
   </Folder>
 </Solution>

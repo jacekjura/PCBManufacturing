@@ -1,6 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="using:PCBManufacturing.ViewModels"
+             xmlns:vm="using:PCBManufacturing.PresentationLogic.ViewModels"
              xmlns:views="using:PCBManufacturing.AvaloniaApp.Views"
              xmlns:conv="using:PCBManufacturing.AvaloniaApp.Converters"
              x:Class="PCBManufacturing.AvaloniaApp.App"
@@ -89,7 +89,7 @@
     </Application.Resources>
     <Application.Styles>
         <FluentTheme />
-        <StyleInclude Source="avares://PCBManufacturing.Avalonia/Styles/AppStyles.axaml"/>
+        <StyleInclude Source="avares://PCBManufacturing.Avalonia/Resources/AppStyles.axaml"/>
     </Application.Styles>
     <Application.DataTemplates>
         <DataTemplate DataType="vm:MainViewModel">

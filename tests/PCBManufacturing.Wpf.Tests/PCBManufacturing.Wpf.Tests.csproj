@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0-windows</TargetFramework>
@@ -24,9 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\..\src\PCBManufacturing.Wpf\Themes\Light.xaml" Link="Themes\Light.xaml" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\src\PCBManufacturing.Wpf\Themes\Dark.xaml" Link="Themes\Dark.xaml" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\src\PCBManufacturing.Wpf\Themes\Fluent.xaml" Link="Themes\Fluent.xaml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\src\PCBManufacturing.Wpf\Resources\Light.xaml" Link="Resources\Light.xaml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\src\PCBManufacturing.Wpf\Resources\Dark.xaml" Link="Resources\Dark.xaml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\src\PCBManufacturing.Wpf\Resources\Fluent.xaml" Link="Resources\Fluent.xaml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 using System.Windows;
-using PCBManufacturing.ViewModels;
+using PCBManufacturing.PresentationLogic.ViewModels;
 
 namespace PCBManufacturing.Wpf.Views;
 

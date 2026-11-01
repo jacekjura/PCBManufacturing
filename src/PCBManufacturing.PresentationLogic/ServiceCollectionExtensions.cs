@@ -1,14 +1,15 @@
 using Microsoft.Extensions.DependencyInjection;
 using PCBManufacturing.Core;
-using PCBManufacturing.Core.Catalog;
+using PCBManufacturing.Core.Services.Catalog;
 using PCBManufacturing.Core.Graphics;
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Ordering;
-using PCBManufacturing.Core.Preferences;
-using PCBManufacturing.Core.Pricing;
-using PCBManufacturing.Core.Validation;
+using PCBManufacturing.Core.Services.Ordering;
+using PCBManufacturing.Core.Services.Preferences;
+using PCBManufacturing.Core.Services.Pricing;
+using PCBManufacturing.Core.Services.Validation;
+using PCBManufacturing.PresentationLogic.ViewModels;
 
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic;
 
 public static class ServiceCollectionExtensions
 {

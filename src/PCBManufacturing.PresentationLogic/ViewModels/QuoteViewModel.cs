@@ -3,10 +3,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using PCBManufacturing.Core.Formatting;
 using PCBManufacturing.Core.Graphics;
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Pricing;
+using PCBManufacturing.Core.Localization.Keys;
+using PCBManufacturing.Core.Models.Artwork;
+using PCBManufacturing.Core.Models.Catalog;
+using PCBManufacturing.Core.Models.Quote;
+using PCBManufacturing.Core.Services.Pricing;
 
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic.ViewModels;
 
 public sealed partial class QuoteViewModel : ObservableObject
 {

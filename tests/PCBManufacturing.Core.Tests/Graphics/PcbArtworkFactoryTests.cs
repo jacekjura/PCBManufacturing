@@ -1,5 +1,5 @@
 using PCBManufacturing.Core.Graphics;
-using PCBManufacturing.Core.Models;
+using PCBManufacturing.Core.Models.Artwork;
 
 namespace PCBManufacturing.Core.Tests.Graphics;
 

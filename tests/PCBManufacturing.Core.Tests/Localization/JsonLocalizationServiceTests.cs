@@ -1,7 +1,8 @@
 using System.Text.Json;
 using PCBManufacturing.Core;
-using PCBManufacturing.Core.Catalog;
+using PCBManufacturing.Core.Services.Catalog;
 using PCBManufacturing.Core.Localization;
+using PCBManufacturing.Core.Localization.Keys;
 
 namespace PCBManufacturing.Core.Tests.Localization;
 

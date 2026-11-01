@@ -1,4 +1,4 @@
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic;
 
 internal static class UiThread
 {

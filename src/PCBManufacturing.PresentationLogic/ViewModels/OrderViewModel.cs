@@ -1,15 +1,18 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using PCBManufacturing.Core.Dialogs;
+using PCBManufacturing.Core.Services.Dialogs;
 using PCBManufacturing.Core.Formatting;
 using PCBManufacturing.Core.Localization;
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Ordering;
-using Action = PCBManufacturing.Core.Localization.Action;
-using QuoteText = PCBManufacturing.Core.Localization.Quote;
+using PCBManufacturing.Core.Localization.Keys;
+using PCBManufacturing.Core.Models.Dialogs;
+using PCBManufacturing.Core.Models.Ordering;
+using PCBManufacturing.Core.Services.Ordering;
+using PCBManufacturing.PresentationLogic;
+using Action = PCBManufacturing.Core.Localization.Keys.Action;
+using QuoteText = PCBManufacturing.Core.Localization.Keys.Quote;
 
-namespace PCBManufacturing.ViewModels;
+namespace PCBManufacturing.PresentationLogic.ViewModels;
 
 public sealed partial class OrderViewModel : ObservableObject
 {

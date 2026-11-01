@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PCBManufacturing.Core\PCBManufacturing.Core.csproj" />
-    <ProjectReference Include="..\..\src\PCBManufacturing.ViewModels\PCBManufacturing.ViewModels.csproj" />
+    <ProjectReference Include="..\..\src\PCBManufacturing.PresentationLogic\PCBManufacturing.PresentationLogic.csproj" />
   </ItemGroup>
 
 </Project>

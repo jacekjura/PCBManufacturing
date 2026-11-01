@@ -1,7 +1,8 @@
-using PCBManufacturing.Core.Models;
-using PCBManufacturing.Core.Preferences;
+using PCBManufacturing.Core.Models.Preferences;
+using PCBManufacturing.Core.Models.Theming;
+using PCBManufacturing.Core.Services.Preferences;
 
-namespace PCBManufacturing.Core.Tests.Preferences;
+namespace PCBManufacturing.Core.Tests.Services.Preferences;
 
 public class JsonPreferencesStoreTests
 {
