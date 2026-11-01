@@ -45,6 +45,7 @@ public partial class App : Application
                 desktop.MainWindow = new Window
                 {
                     Title = "PCB Manufacturing",
+                    Icon = AppIcons.Window,
                     Width = 640,
                     Height = 360,
                     Content = new TextBlock

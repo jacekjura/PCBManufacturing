@@ -7,11 +7,16 @@
     <RootNamespace>PCBManufacturing.AvaloniaApp</RootNamespace>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationTitle>PCB Manufacturing</ApplicationTitle>
+    <ApplicationIcon>..\Assets\AppIcon.ico</ApplicationIcon>
     <Description>Avalonia desktop client for PCB manufacturing orders.</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PCBManufacturing.PresentationLogic\PCBManufacturing.PresentationLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="..\Assets\AppIcon.ico" Link="Assets\AppIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>

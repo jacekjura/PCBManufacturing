@@ -7,11 +7,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <RootNamespace>PCBManufacturing.Wpf</RootNamespace>
     <ApplicationTitle>PCB Manufacturing</ApplicationTitle>
+    <ApplicationIcon>..\Assets\AppIcon.ico</ApplicationIcon>
     <Description>WPF desktop client for PCB manufacturing orders.</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PCBManufacturing.PresentationLogic\PCBManufacturing.PresentationLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="..\Assets\AppIcon.ico" Link="Assets\AppIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>

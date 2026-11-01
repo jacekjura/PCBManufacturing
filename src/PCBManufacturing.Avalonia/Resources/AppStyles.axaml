@@ -53,6 +53,8 @@
         <Setter Property="Background" Value="{DynamicResource Brush.Accent}"/>
         <Setter Property="Foreground" Value="{DynamicResource Brush.OnAccent}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style Selector="Button.primary:pointerover">
         <Setter Property="Background" Value="{DynamicResource Brush.AccentHover}"/>

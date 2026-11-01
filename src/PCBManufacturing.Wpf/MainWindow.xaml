@@ -5,7 +5,9 @@
         xmlns:conv="clr-namespace:PCBManufacturing.Wpf.Converters"
         xmlns:markup="clr-namespace:PCBManufacturing.Wpf.Markup"
         xmlns:views="clr-namespace:PCBManufacturing.Wpf.Views"
-        Title="{Binding Localization[App.Title]}"
+        xmlns:local="clr-namespace:PCBManufacturing.Wpf"
+        Title=""
+        Icon="{x:Static local:AppIcons.Window}"
         Width="1180"
         Height="820"
         MinWidth="980"
@@ -28,7 +30,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="24,16,24,4">
+        <Grid Margin="24,0,24,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
