@@ -53,6 +53,8 @@ One window, three tabs:
 
 The header switches English/Russian and light/dark, saves the current choices, and can place the order from any tab. Discard resets the board fields and keeps the theme and language.
 
+![Theme and language](docs/screenshots/theme-and-language.png)
+
 ## Tests
 
 `dotnet test` covers catalog loading, the price and lead-time calculation, postcode cases, localization key parity, preference and order persistence, artwork paths, view-model flows (including the order dialog), WPF geometry and theme dictionaries, and Avalonia geometry plus the Fluent brushes the shell uses.
