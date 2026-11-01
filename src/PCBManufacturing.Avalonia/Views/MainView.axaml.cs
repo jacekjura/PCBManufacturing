@@ -51,9 +51,10 @@ public partial class MainView : ReactiveUserControl<MainViewModel>
             return;
 
         var rows = Sections.RowDefinitions;
-        rows[0].Height = _sections.IsPreferencesExpanded ? new GridLength(1, GridUnitType.Star) : GridLength.Auto;
-        rows[0].MinHeight = _sections.IsPreferencesExpanded ? 260 : 0;
-        rows[1].Height = _sections.IsQuoteExpanded ? new GridLength(3, GridUnitType.Star) : GridLength.Auto;
-        rows[2].Height = _sections.IsOrdersExpanded ? new GridLength(2, GridUnitType.Star) : GridLength.Auto;
+        var share = new GridLength(1, GridUnitType.Star);
+        rows[0].MinHeight = 0;
+        rows[0].Height = _sections.IsPreferencesExpanded ? share : GridLength.Auto;
+        rows[1].Height = _sections.IsQuoteExpanded ? share : GridLength.Auto;
+        rows[2].Height = _sections.IsOrdersExpanded ? share : GridLength.Auto;
     }
 }

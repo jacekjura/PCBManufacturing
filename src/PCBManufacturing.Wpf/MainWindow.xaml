@@ -93,9 +93,9 @@
 
         <Grid Grid.Row="2" Margin="24,12,24,16">
             <Grid.RowDefinitions>
-                <RowDefinition MinHeight="{Binding Data.IsPreferencesExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToDouble}, ConverterParameter=260}" Height="{Binding Data.IsPreferencesExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}}"/>
-                <RowDefinition Height="{Binding Data.IsQuoteExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}, ConverterParameter=3}"/>
-                <RowDefinition Height="{Binding Data.IsOrdersExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}, ConverterParameter=2}"/>
+                <RowDefinition Height="{Binding Data.IsPreferencesExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}}"/>
+                <RowDefinition Height="{Binding Data.IsQuoteExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}}"/>
+                <RowDefinition Height="{Binding Data.IsOrdersExpanded, Source={StaticResource SectionProxy}, Converter={StaticResource BoolToGridLength}}"/>
             </Grid.RowDefinitions>
             <Expander Grid.Row="0" IsExpanded="{Binding IsPreferencesExpanded, Mode=TwoWay}" AutomationProperties.Name="{Binding Localization[Tab.Preferences]}">
                 <Expander.Header>
