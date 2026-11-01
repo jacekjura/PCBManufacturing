@@ -17,8 +17,8 @@ public class JsonLocalizationServiceTests
         var ru = JsonSerializer.Deserialize<Dictionary<string, string>>(russian)!;
 
         Assert.Equal(en.Keys.OrderBy(key => key), ru.Keys.OrderBy(key => key));
-        Assert.NotEqual("App.Title", en["App.Title"]);
-        Assert.NotEqual(en["Tab.Preferences"], ru["Tab.Preferences"]);
+        Assert.NotEqual(App.Title, en[App.Title]);
+        Assert.NotEqual(en[Tab.Preferences], ru[Tab.Preferences]);
     }
 
     [Fact]
@@ -37,7 +37,7 @@ public class JsonLocalizationServiceTests
 
         service.SetCulture("ru");
         Assert.Equal("ru", service.Culture);
-        Assert.Equal("Параметры", service["Tab.Preferences"]);
+        Assert.Equal("Параметры", service[Tab.Preferences]);
         Assert.Equal("missing-key", service["missing-key"]);
     }
 
@@ -51,6 +51,6 @@ public class JsonLocalizationServiceTests
         service.SetCulture("ru-RU");
 
         Assert.True(raised);
-        Assert.Contains("дн", service.Format("Summary.Days", 5));
+        Assert.Contains("дн", service.Format(Summary.Days, 5));
     }
 }

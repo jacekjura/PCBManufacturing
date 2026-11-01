@@ -1,3 +1,4 @@
+using PCBManufacturing.Core.Localization;
 using PCBManufacturing.Core.Models;
 
 namespace PCBManufacturing.Core.Pricing;
@@ -21,18 +22,18 @@ public sealed class QuoteCalculator : IQuoteCalculator
 
         var steps = new (string Key, decimal Modifier, int Days)[]
         {
-            ("Quote.Size", request.Size.PriceModifier, request.Size.ProductionDaysExtra),
-            ("Quote.Material", request.Material.PriceModifier, request.Material.ProductionDays),
-            ("Quote.Thickness", request.Thickness.PriceModifier, request.Thickness.ProductionDaysExtra),
-            ("Quote.Layers", request.Layers.PriceModifier, request.Layers.ProductionDaysExtra),
-            ("Quote.Finish", request.Finish.PriceModifier, request.Finish.ProductionDaysExtra),
-            ("Quote.Quantity", request.Quantity.PriceModifier, request.Quantity.ProductionDaysExtra)
+            (Quote.Size, request.Size.PriceModifier, request.Size.ProductionDaysExtra),
+            (Quote.Material, request.Material.PriceModifier, request.Material.ProductionDays),
+            (Quote.Thickness, request.Thickness.PriceModifier, request.Thickness.ProductionDaysExtra),
+            (Quote.Layers, request.Layers.PriceModifier, request.Layers.ProductionDaysExtra),
+            (Quote.Finish, request.Finish.PriceModifier, request.Finish.ProductionDaysExtra),
+            (Quote.Quantity, request.Quantity.PriceModifier, request.Quantity.ProductionDaysExtra)
         };
 
         decimal running = request.BasePricePerBoard;
         var raw = new List<(string Key, decimal Amount, decimal Modifier, int Days)>
         {
-            ("Quote.Base", running, 1m, 0)
+            (Quote.Base, running, 1m, 0)
         };
 
         foreach (var (key, modifier, days) in steps)

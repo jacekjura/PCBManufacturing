@@ -1,3 +1,4 @@
+using PCBManufacturing.Core.Localization;
 using PCBManufacturing.Core.Models;
 using PCBManufacturing.Core.Pricing;
 
@@ -63,11 +64,11 @@ public class QuoteCalculatorTests
     {
         BasePricePerBoard = 25m,
         Currency = "USD",
-        Material = new MaterialDefinition { Id = "m", NameKey = "Material.Fr4", PriceModifier = materialModifier, ProductionDays = materialDays, SubstrateHex = "#C4A574" },
-        Thickness = new BoardThicknessDefinition { Id = "t", NameKey = "Thickness.16", Millimeters = 1.6, PriceModifier = thicknessModifier, ProductionDaysExtra = thicknessDays },
-        Size = new ParameterDefinition { Id = "s", Kind = ParameterKind.Size, GroupKey = "Group.Dimensions", NameKey = "Param.Size100", ValueKey = "Param.Size100.Value", PriceModifier = sizeModifier, WidthMm = 100, HeightMm = 80 },
-        Layers = new ParameterDefinition { Id = "l", Kind = ParameterKind.Layers, GroupKey = "Group.Layers", NameKey = "Param.Layers2", ValueKey = "Param.Layers2.Value", PriceModifier = layersModifier, LayerCount = 2, ProductionDaysExtra = layersDays },
-        Finish = new ParameterDefinition { Id = "f", Kind = ParameterKind.Finish, GroupKey = "Group.Finish", NameKey = "Param.Hasl", ValueKey = "Param.Hasl.Value", PriceModifier = finishModifier, FinishId = "hasl", ProductionDaysExtra = finishDays },
-        Quantity = new ParameterDefinition { Id = "q", Kind = ParameterKind.Quantity, GroupKey = "Group.Quantity", NameKey = "Param.Qty10", ValueKey = "Param.Qty10.Value", PriceModifier = quantityModifier, Quantity = quantity }
+        Material = new MaterialDefinition { Id = "m", NameKey = Material.Fr4, PriceModifier = materialModifier, ProductionDays = materialDays, SubstrateHex = "#C4A574" },
+        Thickness = new BoardThicknessDefinition { Id = "t", NameKey = Thickness._16, Millimeters = 1.6, PriceModifier = thicknessModifier, ProductionDaysExtra = thicknessDays },
+        Size = new ParameterDefinition { Id = "s", Kind = ParameterKind.Size, GroupKey = Group.Dimensions, NameKey = Param.Size100, ValueKey = Param.Size100Value, PriceModifier = sizeModifier, WidthMm = 100, HeightMm = 80 },
+        Layers = new ParameterDefinition { Id = "l", Kind = ParameterKind.Layers, GroupKey = Group.Layers, NameKey = Param.Layers2, ValueKey = Param.Layers2Value, PriceModifier = layersModifier, LayerCount = 2, ProductionDaysExtra = layersDays },
+        Finish = new ParameterDefinition { Id = "f", Kind = ParameterKind.Finish, GroupKey = Group.Finish, NameKey = Param.Hasl, ValueKey = Param.HaslValue, PriceModifier = finishModifier, FinishId = "hasl", ProductionDaysExtra = finishDays },
+        Quantity = new ParameterDefinition { Id = "q", Kind = ParameterKind.Quantity, GroupKey = Group.Quantity, NameKey = Param.Qty10, ValueKey = Param.Qty10Value, PriceModifier = quantityModifier, Quantity = quantity }
     };
 }

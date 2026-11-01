@@ -104,7 +104,7 @@ public sealed partial class PreferencesViewModel : ValidatingObservableObject
         {
             var material = option.Get<MaterialDefinition>();
             option.Title = _text[material.NameKey];
-            option.Impact = $"{_text.Format("Impact.Modifier", material.PriceModifier)} · {_text.Format("Summary.Days", material.ProductionDays)}";
+            option.Impact = $"{_text.Format(Impact.Modifier, material.PriceModifier)} · {_text.Format(Summary.Days, material.ProductionDays)}";
         }
 
         foreach (var option in SolderMaskColors)
@@ -114,29 +114,29 @@ public sealed partial class PreferencesViewModel : ValidatingObservableObject
         {
             var thickness = option.Get<BoardThicknessDefinition>();
             option.Title = _text[thickness.NameKey];
-            option.Impact = _text.Format("Impact.Modifier", thickness.PriceModifier);
+            option.Impact = _text.Format(Impact.Modifier, thickness.PriceModifier);
         }
 
         foreach (var option in Quantities)
         {
             var quantity = option.Get<ParameterDefinition>();
             option.Title = $"{_text[quantity.NameKey]} · {_text[quantity.ValueKey]}";
-            option.Impact = _text.Format("Impact.Modifier", quantity.PriceModifier);
+            option.Impact = _text.Format(Impact.Modifier, quantity.PriceModifier);
         }
 
-        SummaryProject = string.IsNullOrWhiteSpace(ProjectName) ? _text["Summary.Empty"] : ProjectName;
-        SummaryPostcode = string.IsNullOrWhiteSpace(Postcode) ? _text["Summary.Empty"] : Postcode;
-        SummaryPostcodeState = IsPostcodeValid ? _text["Summary.Valid"] : _text["Summary.Invalid"];
-        SummaryMaterial = Material is null ? _text["Summary.Empty"] : _text[Material.NameKey];
-        SummaryModifier = Material is null ? _text["Impact.None"] : _text.Format("Impact.Modifier", Material.PriceModifier);
-        SummaryLead = Material is null ? _text["Impact.None"] : _text.Format("Summary.Days", Material.ProductionDays);
-        SummaryMask = SolderMask is null ? _text["Summary.Empty"] : _text[SolderMask.NameKey];
+        SummaryProject = string.IsNullOrWhiteSpace(ProjectName) ? _text[Summary.Empty] : ProjectName;
+        SummaryPostcode = string.IsNullOrWhiteSpace(Postcode) ? _text[Summary.Empty] : Postcode;
+        SummaryPostcodeState = IsPostcodeValid ? _text[Summary.Valid] : _text[Summary.Invalid];
+        SummaryMaterial = Material is null ? _text[Summary.Empty] : _text[Material.NameKey];
+        SummaryModifier = Material is null ? _text[Impact.None] : _text.Format(Impact.Modifier, Material.PriceModifier);
+        SummaryLead = Material is null ? _text[Impact.None] : _text.Format(Summary.Days, Material.ProductionDays);
+        SummaryMask = SolderMask is null ? _text[Summary.Empty] : _text[SolderMask.NameKey];
         MaskHex = SolderMask?.Hex ?? "#1B7A3A";
-        SummaryThickness = Thickness is null ? _text["Summary.Empty"] : _text[Thickness.NameKey];
-        SummaryQuantity = Quantity is null ? _text["Summary.Empty"] : _text[Quantity.ValueKey];
-        SummaryNotes = string.IsNullOrWhiteSpace(Notes) ? _text["Summary.Empty"] : Notes.Trim();
+        SummaryThickness = Thickness is null ? _text[Summary.Empty] : _text[Thickness.NameKey];
+        SummaryQuantity = Quantity is null ? _text[Summary.Empty] : _text[Quantity.ValueKey];
+        SummaryNotes = string.IsNullOrWhiteSpace(Notes) ? _text[Summary.Empty] : Notes.Trim();
         PostcodeMessage = IsPostcodeValid ? "" : PostcodeErrorText();
-        ProjectMessage = IsProjectValid ? "" : _text["Validation.Project.Empty"];
+        ProjectMessage = IsProjectValid ? "" : _text[Validation.Project.Empty];
         SetErrors(nameof(Postcode), IsPostcodeValid ? [] : [PostcodeMessage]);
         SetErrors(nameof(ProjectName), IsProjectValid ? [] : [ProjectMessage]);
     }
@@ -176,8 +176,8 @@ public sealed partial class PreferencesViewModel : ValidatingObservableObject
 
     private string PostcodeErrorText() =>
         _postcodes.Validate(Postcode).Error == PostcodeError.Empty
-            ? _text["Validation.Postcode.Empty"]
-            : _text["Validation.Postcode.Invalid"];
+            ? _text[Validation.Postcode.Empty]
+            : _text[Validation.Postcode.Invalid];
 
     private static OptionViewModel? Find(IReadOnlyList<OptionViewModel> options, string? id) =>
         options.FirstOrDefault(option => option.Id == id) ?? options.FirstOrDefault();

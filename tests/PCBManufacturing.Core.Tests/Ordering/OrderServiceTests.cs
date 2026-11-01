@@ -1,3 +1,4 @@
+using PCBManufacturing.Core.Localization;
 using PCBManufacturing.Core.Models;
 using PCBManufacturing.Core.Ordering;
 
@@ -15,12 +16,12 @@ public class OrderServiceTests
             ProjectName = "AC-9001",
             Postcode = "94105",
             Notes = "",
-            MaterialKey = "Material.Fr4",
-            MaskKey = "Color.Green",
+            MaterialKey = Material.Fr4,
+            MaskKey = Color.Green,
             MaskHex = "#1B7A3A",
-            ThicknessKey = "Thickness.16",
-            SizeKey = "Param.Size100",
-            FinishKey = "Param.Hasl",
+            ThicknessKey = Thickness._16,
+            SizeKey = Param.Size100,
+            FinishKey = Param.Hasl,
             Layers = 2,
             Quantity = 10,
             Total = 250m,

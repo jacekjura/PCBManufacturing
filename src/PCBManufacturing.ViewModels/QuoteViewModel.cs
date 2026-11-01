@@ -94,20 +94,20 @@ public sealed partial class QuoteViewModel : ObservableObject
         foreach (var group in Groups)
         {
             group.Title = _text[group.GroupKey];
-            group.ColumnParameter = _text["Quote.Column.Parameter"];
-            group.ColumnValue = _text["Quote.Column.Value"];
-            group.ColumnTime = _text["Quote.Column.Time"];
-            group.ColumnCost = _text["Quote.Column.Cost"];
+            group.ColumnParameter = _text[Quote.Column.Parameter];
+            group.ColumnValue = _text[Quote.Column.Value];
+            group.ColumnTime = _text[Quote.Column.Time];
+            group.ColumnCost = _text[Quote.Column.Cost];
             foreach (var row in group.Rows)
             {
                 row.Name = _text[row.Definition.NameKey];
                 row.Value = _text[row.Definition.ValueKey];
                 row.TimeImpact = row.Definition.ProductionDaysExtra == 0
-                    ? _text["Impact.None"]
-                    : _text.Format("Impact.Days", row.Definition.ProductionDaysExtra);
+                    ? _text[Impact.None]
+                    : _text.Format(Impact.Days, row.Definition.ProductionDaysExtra);
                 row.CostImpact = row.Definition.PriceModifier == 1m
-                    ? _text["Impact.Included"]
-                    : _text.Format("Impact.Modifier", row.Definition.PriceModifier);
+                    ? _text[Impact.Included]
+                    : _text.Format(Impact.Modifier, row.Definition.PriceModifier);
             }
         }
 
@@ -169,19 +169,19 @@ public sealed partial class QuoteViewModel : ObservableObject
     {
         var culture = _text.CultureInfo;
         var currency = _preferences.Catalog.Currency;
-        IncompleteText = _text["Quote.Incomplete"];
+        IncompleteText = _text[Quote.Incomplete];
         if (_result is null)
         {
-            UnitText = _text["Impact.None"];
-            TotalText = _text["Impact.None"];
-            LeadText = _text["Impact.None"];
+            UnitText = _text[Impact.None];
+            TotalText = _text[Impact.None];
+            LeadText = _text[Impact.None];
             Lines.Clear();
         }
         else
         {
             UnitText = Money.Format(_result.UnitPrice, currency, culture);
             TotalText = Money.Format(_result.Total, currency, culture);
-            LeadText = _text.Format("Summary.Days", _result.ProductionDays);
+            LeadText = _text.Format(Summary.Days, _result.ProductionDays);
             Lines.Clear();
             foreach (var line in _result.Lines)
             {
@@ -192,7 +192,7 @@ public sealed partial class QuoteViewModel : ObservableObject
                     Days = line.Days,
                     Label = _text[line.LabelKey],
                     AmountText = Money.Format(line.Amount, currency, culture),
-                    DaysText = line.Days == 0 ? _text["Impact.None"] : _text.Format("Impact.Days", line.Days)
+                    DaysText = line.Days == 0 ? _text[Impact.None] : _text.Format(Impact.Days, line.Days)
                 });
             }
         }
@@ -200,17 +200,17 @@ public sealed partial class QuoteViewModel : ObservableObject
         var size = SelectedSize;
         var layers = SelectedLayers;
         var finish = SelectedFinish;
-        LegendSize = size is null ? _text["Impact.None"] : _text[size.ValueKey];
-        LegendLayers = layers is null ? _text["Impact.None"] : _text[layers.ValueKey];
-        LegendFinish = finish is null ? _text["Impact.None"] : _text[finish.NameKey];
+        LegendSize = size is null ? _text[Impact.None] : _text[size.ValueKey];
+        LegendLayers = layers is null ? _text[Impact.None] : _text[layers.ValueKey];
+        LegendFinish = finish is null ? _text[Impact.None] : _text[finish.NameKey];
         LegendMask = _preferences.SummaryMask;
         PreviewMaskHex = _preferences.MaskHex;
         foreach (var group in Groups)
         {
-            group.ColumnParameter = _text["Quote.Column.Parameter"];
-            group.ColumnValue = _text["Quote.Column.Value"];
-            group.ColumnTime = _text["Quote.Column.Time"];
-            group.ColumnCost = _text["Quote.Column.Cost"];
+            group.ColumnParameter = _text[Quote.Column.Parameter];
+            group.ColumnValue = _text[Quote.Column.Value];
+            group.ColumnTime = _text[Quote.Column.Time];
+            group.ColumnCost = _text[Quote.Column.Cost];
             group.Title = _text[group.GroupKey];
         }
     }

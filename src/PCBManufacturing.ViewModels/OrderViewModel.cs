@@ -6,6 +6,8 @@ using PCBManufacturing.Core.Formatting;
 using PCBManufacturing.Core.Localization;
 using PCBManufacturing.Core.Models;
 using PCBManufacturing.Core.Ordering;
+using Action = PCBManufacturing.Core.Localization.Action;
+using QuoteText = PCBManufacturing.Core.Localization.Quote;
 
 namespace PCBManufacturing.ViewModels;
 
@@ -63,7 +65,7 @@ public sealed partial class OrderViewModel : ObservableObject
 
     public void RefreshText()
     {
-        PlaceOrderText = IsBusy ? _text["Action.Submitting"] : _text["Action.PlaceOrder"];
+        PlaceOrderText = IsBusy ? _text[Action.Submitting] : _text[Action.PlaceOrder];
         foreach (var item in History)
             ApplyItemText(item);
         RefreshValidation();
@@ -78,10 +80,10 @@ public sealed partial class OrderViewModel : ObservableObject
             UiThread.Run(_ui, () => Replace(ValidationMessages, errors));
             await _dialogs.AlertAsync(new DialogContent
             {
-                Title = _text["Order.ValidationTitle"],
-                Message = _text["Order.ValidationMessage"],
-                ConfirmText = _text["Action.Close"],
-                Rows = errors.Select(error => new DialogRow { Label = _text["Order.Heading"], Value = error }).ToList()
+                Title = _text[Order.ValidationTitle],
+                Message = _text[Order.ValidationMessage],
+                ConfirmText = _text[Action.Close],
+                Rows = errors.Select(error => new DialogRow { Label = _text[Order.Heading], Value = error }).ToList()
             }, cancellationToken).ConfigureAwait(false);
             return;
         }
@@ -98,7 +100,7 @@ public sealed partial class OrderViewModel : ObservableObject
             UiThread.Run(_ui, () =>
             {
                 History.Insert(0, ToItem(confirmation));
-                StatusMessage = _text.Format("Order.Confirmed", confirmation.Number);
+                StatusMessage = _text.Format(Order.Confirmed, confirmation.Number);
                 snapshot = History.Select(item => item.Model).ToList();
             });
             await _history.SaveAsync(snapshot, cancellationToken).ConfigureAwait(false);
@@ -111,9 +113,9 @@ public sealed partial class OrderViewModel : ObservableObject
             UiThread.Run(_ui, () => StatusMessage = exception.Message);
             await _dialogs.AlertAsync(new DialogContent
             {
-                Title = _text["Order.FailureTitle"],
+                Title = _text[Order.FailureTitle],
                 Message = exception.Message,
-                ConfirmText = _text["Action.Close"]
+                ConfirmText = _text[Action.Close]
             }, cancellationToken).ConfigureAwait(false);
         }
         finally
@@ -126,7 +128,7 @@ public sealed partial class OrderViewModel : ObservableObject
 
     partial void OnIsBusyChanged(bool value)
     {
-        PlaceOrderText = value ? _text["Action.Submitting"] : _text["Action.PlaceOrder"];
+        PlaceOrderText = value ? _text[Action.Submitting] : _text[Action.PlaceOrder];
         PlaceOrderCommand.NotifyCanExecuteChanged();
     }
 
@@ -141,25 +143,25 @@ public sealed partial class OrderViewModel : ObservableObject
     {
         var errors = new List<string>();
         if (!_preferences.IsProjectValid)
-            errors.Add(_text["Order.Error.Project"]);
+            errors.Add(_text[Order.Error.Project]);
         if (!_preferences.IsPostcodeValid)
-            errors.Add(_text["Order.Error.Postcode"]);
+            errors.Add(_text[Order.Error.Postcode]);
         if (_preferences.Material is null)
-            errors.Add(_text["Order.Error.Material"]);
+            errors.Add(_text[Order.Error.Material]);
         if (_preferences.SolderMask is null)
-            errors.Add(_text["Order.Error.Mask"]);
+            errors.Add(_text[Order.Error.Mask]);
         if (_preferences.Thickness is null)
-            errors.Add(_text["Order.Error.Thickness"]);
+            errors.Add(_text[Order.Error.Thickness]);
         if (_preferences.Quantity is null)
-            errors.Add(_text["Order.Error.Quantity"]);
+            errors.Add(_text[Order.Error.Quantity]);
         if (_quote.SelectedSize is null)
-            errors.Add(_text["Order.Error.Size"]);
+            errors.Add(_text[Order.Error.Size]);
         if (_quote.SelectedLayers is null)
-            errors.Add(_text["Order.Error.Layers"]);
+            errors.Add(_text[Order.Error.Layers]);
         if (_quote.SelectedFinish is null)
-            errors.Add(_text["Order.Error.Finish"]);
+            errors.Add(_text[Order.Error.Finish]);
         if (_quote.Result is null)
-            errors.Add(_text["Quote.Incomplete"]);
+            errors.Add(_text[QuoteText.Incomplete]);
         return errors;
     }
 
@@ -168,27 +170,27 @@ public sealed partial class OrderViewModel : ObservableObject
         var result = _quote.Result!;
         var rows = new List<DialogRow>
         {
-            Row("Summary.Project", _preferences.ProjectName),
-            Row("Summary.Postcode", _preferences.Postcode),
-            Row("Summary.Material", _preferences.SummaryMaterial),
-            Row("Summary.Mask", _preferences.SummaryMask),
-            Row("Summary.Thickness", _preferences.SummaryThickness),
-            Row("Quote.Legend.Size", _quote.LegendSize),
-            Row("Quote.Legend.Layers", _quote.LegendLayers),
-            Row("Quote.Legend.Finish", _quote.LegendFinish),
-            Row("Summary.Quantity", _preferences.SummaryQuantity),
-            Row("Quote.Total", Money.Format(result.Total, result.Currency, _text.CultureInfo)),
-            Row("Quote.Lead", _text.Format("Summary.Days", result.ProductionDays))
+            Row(Summary.Project, _preferences.ProjectName),
+            Row(Summary.Postcode, _preferences.Postcode),
+            Row(Summary.Material, _preferences.SummaryMaterial),
+            Row(Summary.Mask, _preferences.SummaryMask),
+            Row(Summary.Thickness, _preferences.SummaryThickness),
+            Row(QuoteText.Legend.Size, _quote.LegendSize),
+            Row(QuoteText.Legend.Layers, _quote.LegendLayers),
+            Row(QuoteText.Legend.Finish, _quote.LegendFinish),
+            Row(Summary.Quantity, _preferences.SummaryQuantity),
+            Row(QuoteText.Total, Money.Format(result.Total, result.Currency, _text.CultureInfo)),
+            Row(QuoteText.Lead, _text.Format(Summary.Days, result.ProductionDays))
         };
         if (!string.IsNullOrWhiteSpace(_preferences.Notes))
-            rows.Add(Row("Order.Notes", _preferences.Notes.Trim()));
+            rows.Add(Row(Order.Notes, _preferences.Notes.Trim()));
 
         return new DialogContent
         {
-            Title = _text["Order.DialogTitle"],
-            Message = _text["Order.DialogMessage"],
-            ConfirmText = _text["Action.Confirm"],
-            CancelText = _text["Action.Cancel"],
+            Title = _text[Order.DialogTitle],
+            Message = _text[Order.DialogMessage],
+            ConfirmText = _text[Action.Confirm],
+            CancelText = _text[Action.Cancel],
             Rows = rows
         };
     }
@@ -234,7 +236,7 @@ public sealed partial class OrderViewModel : ObservableObject
             _text[model.MaterialKey],
             _text[model.SizeKey],
             _text[model.FinishKey],
-            _text.Format("Summary.Days", model.ProductionDays),
+            _text.Format(Summary.Days, model.ProductionDays),
             Money.Format(model.Total, model.Currency, _text.CultureInfo)
         });
     }

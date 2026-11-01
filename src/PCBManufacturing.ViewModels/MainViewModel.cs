@@ -187,6 +187,6 @@ public sealed partial class MainViewModel : ObservableObject
     private void UpdateStatus()
     {
         IsDirty = !Capture().Equals(_lastSaved);
-        StatusText = IsDirty ? _text["Status.Dirty"] : _text["Status.Saved"];
+        StatusText = IsDirty ? _text[Status.Dirty] : _text[Status.Saved];
     }
 }
