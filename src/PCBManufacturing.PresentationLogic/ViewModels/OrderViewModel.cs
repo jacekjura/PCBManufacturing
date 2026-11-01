@@ -8,7 +8,6 @@ using PCBManufacturing.Core.Localization.Keys;
 using PCBManufacturing.Core.Models.Dialogs;
 using PCBManufacturing.Core.Models.Ordering;
 using PCBManufacturing.Core.Services.Ordering;
-using PCBManufacturing.PresentationLogic;
 using Action = PCBManufacturing.Core.Localization.Keys.Action;
 using QuoteText = PCBManufacturing.Core.Localization.Keys.Quote;
 
@@ -22,7 +21,6 @@ public sealed partial class OrderViewModel : ObservableObject
     private readonly IOrderHistoryStore _history;
     private readonly IDialogService _dialogs;
     private readonly ILocalizationService _text;
-    private readonly SynchronizationContext? _ui = UiThread.Capture();
 
     public OrderViewModel(
         PreferencesViewModel preferences,
@@ -80,50 +78,47 @@ public sealed partial class OrderViewModel : ObservableObject
         var errors = CollectErrors();
         if (errors.Count > 0)
         {
-            UiThread.Run(_ui, () => Replace(ValidationMessages, errors));
+            Replace(ValidationMessages, errors);
             await _dialogs.AlertAsync(new DialogContent
             {
                 Title = _text[Order.ValidationTitle],
                 Message = _text[Order.ValidationMessage],
                 ConfirmText = _text[Action.Close],
                 Rows = errors.Select(error => new DialogRow { Label = _text[Order.Heading], Value = error }).ToList()
-            }, cancellationToken).ConfigureAwait(false);
+            }, cancellationToken).ConfigureAwait(true);
             return;
         }
 
-        var confirmed = await _dialogs.ConfirmAsync(BuildConfirmationDialog(), cancellationToken).ConfigureAwait(false);
+        var confirmed = await _dialogs.ConfirmAsync(BuildConfirmationDialog(), cancellationToken).ConfigureAwait(true);
         if (!confirmed || _quote.Result is null)
             return;
 
-        UiThread.Run(_ui, () => IsBusy = true);
+        IsBusy = true;
         try
         {
-            var confirmation = await _orders.SubmitAsync(BuildDraft(), cancellationToken).ConfigureAwait(false);
+            var confirmation = await _orders.SubmitAsync(BuildDraft(), cancellationToken).ConfigureAwait(true);
             List<OrderConfirmation> snapshot = [];
-            UiThread.Run(_ui, () =>
-            {
-                History.Insert(0, ToItem(confirmation));
-                StatusMessage = _text.Format(Order.Confirmed, confirmation.Number);
-                snapshot = History.Select(item => item.Model).ToList();
-            });
-            await _history.SaveAsync(snapshot, cancellationToken).ConfigureAwait(false);
+            History.Insert(0, ToItem(confirmation));
+            StatusMessage = _text.Format(Order.Confirmed, confirmation.Number);
+            snapshot = History.Select(item => item.Model).ToList();
+            await _history.SaveAsync(snapshot, cancellationToken).ConfigureAwait(true);
         }
         catch (OperationCanceledException)
         {
         }
         catch (Exception exception)
         {
-            UiThread.Run(_ui, () => StatusMessage = exception.Message);
+            StatusMessage = exception.Message;
             await _dialogs.AlertAsync(new DialogContent
             {
                 Title = _text[Order.FailureTitle],
                 Message = exception.Message,
                 ConfirmText = _text[Action.Close]
-            }, cancellationToken).ConfigureAwait(false);
+            }, cancellationToken).ConfigureAwait(true);
         }
         finally
         {
-            UiThread.Run(_ui, () => IsBusy = false);
+            IsBusy = false;
         }
     }
 

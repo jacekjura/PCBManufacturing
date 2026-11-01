@@ -9,7 +9,6 @@ using PCBManufacturing.Core.Models.Theming;
 using PCBManufacturing.Core.Services.Ordering;
 using PCBManufacturing.Core.Services.Preferences;
 using PCBManufacturing.Core.Services.Theming;
-using PCBManufacturing.PresentationLogic;
 
 namespace PCBManufacturing.PresentationLogic.ViewModels;
 
@@ -20,7 +19,6 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly ILocalizationService _text;
     private readonly IThemeApplier _themeApplier;
     private readonly ManufacturingCatalog _catalog;
-    private readonly SynchronizationContext? _ui = UiThread.Capture();
     private SavedPreferences _lastSaved = new();
 
     public MainViewModel(
@@ -99,19 +97,16 @@ public sealed partial class MainViewModel : ObservableObject
     private async Task SaveAsync()
     {
         var snapshot = Capture();
-        await _store.SaveAsync(snapshot).ConfigureAwait(false);
-        UiThread.Run(_ui, () =>
-        {
-            _lastSaved = snapshot;
-            UpdateStatus();
-        });
+        await _store.SaveAsync(snapshot).ConfigureAwait(true);
+        _lastSaved = snapshot;
+        UpdateStatus();
     }
 
     [RelayCommand]
     private async Task ContinueAsync()
     {
         await SaveAsync().ConfigureAwait(true);
-        UiThread.Run(_ui, () => IsQuoteExpanded = true);
+        IsQuoteExpanded = true;
     }
 
     [RelayCommand]
